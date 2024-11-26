@@ -14,5 +14,13 @@ GET /oauth-callback?code=VClQ-2z9HFYhWFxrrXxhKhEhYLDQGIBMVv5xNmUbV1- HTTP/2
     }
 </script>
 
-
 ---
+for example, the following popup will be blocked by the browser by default:
+
+window.open('https://vulnerable-website.com/login/sso');
+To get around this, you can wrap the statement in an onclick event handler as follows:
+
+window.onclick = () => {
+    window.open('https://vulnerable-website.com/login/sso');
+}
+This way, the window.open() method is only invoked when the user clicks somewhere on the page.
