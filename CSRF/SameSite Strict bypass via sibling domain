@@ -23,5 +23,8 @@ eyJ1c2VyIjoiQ09OTkVDVEVEIiwiY29udGVudCI6Ii0tIE5vdyBjaGF0dGluZyB3aXRoIEhhbCBQbGlu
 ---
 https://cms-0abd00bc04b47574852acba0006300b0.web-security-academy.net -> sibling domain
 there is xss vulnerable on text align -> <script>prompt()</script>
+---
+we need to put payload in the url line where we need to enter the value (e.g username=payload) 1. capture and edit the method request to get, we god 
+
 
 
