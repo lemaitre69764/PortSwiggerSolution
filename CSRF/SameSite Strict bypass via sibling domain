@@ -22,4 +22,6 @@ eyJ1c2VyIjoiQ09OTkVDVEVEIiwiY29udGVudCI6Ii0tIE5vdyBjaGF0dGluZyB3aXRoIEhhbCBQbGlu
 
 ---
 https://cms-0abd00bc04b47574852acba0006300b0.web-security-academy.net -> sibling domain
+there is xss vulnerable on text align -> <script>prompt()</script>
+
 
