@@ -15,7 +15,7 @@
 |------------------------------------|----------------------|
 |  Reflected XSS                   | [Click](./)           |
 |  Stored XSS                      | [Click](./)              |
-|  DOM-Based XSS                   | [Click](./DOM-Based XSS)           |
+|  DOM-Based XSS                   | [Click](./DOM-Based%20XSS)           |
 
 ---
 
