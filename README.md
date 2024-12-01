@@ -1,16 +1,16 @@
-# 🌐 PortSwigger Solution 🚀
+# 🌐 PortSwigger Solution 
 
 ---
 
-## 🛡️ Cross-Site Request Forgery (CSRF)
+## 🛡 Cross-Site Request Forgery (CSRF)
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
-| 🟢 CSRF Basic Exploitation         | [Click](./CSRF) |
-| 🟢 CSRF Token Bypass               | [Click](./)       |
+|  CSRF Basic Exploitation         | [Click](./CSRF) |
+|  CSRF Token Bypass               | [Click](./)       |
 
 ---
 
-## ⚡ Cross-Site Scripting (XSS) 
+##  Cross-Site Scripting (XSS) 
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
 |  Reflected XSS                   | [Click](./)           |
@@ -19,7 +19,7 @@
 
 ---
 
-## 🔗 API Security - empty
+##  API Security - empty
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
 |  API Key Exposure                | [Click](./)        |
@@ -27,7 +27,7 @@
 
 ---
 
-## 🧩 Other Modules - empty
+##  Other Modules - empty
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
 |  Directory Traversal             | [Click](./)    |
