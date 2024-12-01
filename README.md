@@ -10,26 +10,26 @@
 
 ---
 
-## ⚡ Cross-Site Scripting (XSS) - empty
+## ⚡ Cross-Site Scripting (XSS) 
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
-| 🟡 Reflected XSS                   | [Click](./)           |
-| 🟡 Stored XSS                      | [Click](./)              |
-| 🟡 DOM-Based XSS                   | [Click](./DOM_XSS)           |
+|  Reflected XSS                   | [Click](./)           |
+|  Stored XSS                      | [Click](./)              |
+|  DOM-Based XSS                   | [Click](./DOM_XSS)           |
 
 ---
 
 ## 🔗 API Security - empty
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
-| 🔵 API Key Exposure                | [Click](./)        |
-| 🔵 Authentication Vulnerabilities  | [Click](./) |
+|  API Key Exposure                | [Click](./)        |
+|  Authentication Vulnerabilities  | [Click](./) |
 
 ---
 
 ## 🧩 Other Modules - empty
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
-| 🔴 Directory Traversal             | [Click](./)    |
-| 🔴 SQL Injection                   | [Click](./)          |
+|  Directory Traversal             | [Click](./)    |
+|  SQL Injection                   | [Click](./)          |
 
