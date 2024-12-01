@@ -5,7 +5,7 @@
 ##  Cross-Site Request Forgery (CSRF)
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
-|  CSRF Basic Exploitation         | [Click](./CSRF) |
+|  CSRF Basic Exploitation         | [Click](./Client-side%20topics/CSRF) |
 |  CSRF Token Bypass               | [Click](./)       |
 
 ---
@@ -15,7 +15,7 @@
 |------------------------------------|----------------------|
 |  Reflected XSS                   | [Click](./)           |
 |  Stored XSS                      | [Click](./)              |
-|  DOM-Based XSS                   | [Click](./DOM-Based%20XSS)           |
+|  DOM-Based XSS                   | [Click](./Client-side%20topicsDOM-Based%20XSS)           |
 
 ---
 
