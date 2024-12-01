@@ -2,7 +2,7 @@
 
 ---
 
-## 🛡 Cross-Site Request Forgery (CSRF)
+##  Cross-Site Request Forgery (CSRF)
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
 |  CSRF Basic Exploitation         | [Click](./CSRF) |
