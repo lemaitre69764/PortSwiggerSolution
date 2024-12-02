@@ -13,7 +13,7 @@
 ##  Cross-Site Scripting (XSS) 
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
-|  Reflected XSS                   | [Click](./)           |
+|  Reflected XSS                   | [Click](./Client%20Side%20Topics/Reflected%20XSS)           |
 |  Stored XSS                      | [Click](./)              |
 |  DOM-Based XSS                   | [Click](./Client%20Side%20Topics/DOM%20based%20xss)           |
 
