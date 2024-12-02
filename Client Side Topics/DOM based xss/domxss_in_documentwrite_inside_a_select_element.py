@@ -26,7 +26,9 @@ def injection():
     if response.status_code == 200:
         print("Yep! Request has submitted successfully!")
         print("Server's response:")
-        print(response.text[:500]) #show only begin 500 characters of response
+        print(response.text[:500])
+        print(f"command execution time: {response.elapsed}")
+        print(f"Reason of response: {response.reason}")
     else:
         print(f"Error: server's code response: {response.status_code}")
         
