@@ -5,7 +5,7 @@
 ##  SQLi
 | **Модуль**                        | **Ссылка**           |
 |------------------------------------|----------------------|
-|  SQL injection vulnerability in WHERE clause allowing retrieval of hidden data             | [Click](./)    |
+|  SQL injection vulnerability in WHERE clause allowing retrieval of hidden data             | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20vulnerability%20in%20WHERE%20clause%20allowing%20retrieval%20of%20hidden%20data.py)    |
 |  SQL Injection                   | [Click](./)          |
 
 ---
