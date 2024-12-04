@@ -22,5 +22,8 @@ def inject (url,payload):
         
 if __name__ == "__main__":
     target_url = "https://0ac100e3031fa1058277f16300700052.web-security-academy.net/"
-    xss_payload = "gg"
+    xss_payload = ""
 inject(target_url,xss_payload)        
+
+#in process
+#allows tags: body | attribute: onbeforeinput |
