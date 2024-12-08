@@ -7,3 +7,4 @@ def function():
     
 function()
 function()
+function()
