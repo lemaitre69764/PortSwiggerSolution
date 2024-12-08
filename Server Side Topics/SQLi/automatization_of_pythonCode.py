@@ -31,7 +31,9 @@ def is_solved(url, no_proxy):
         log.info("Lab not solved yet, retrying...")  
         time.sleep(2)  
         return retrieve_contents(url, no_proxy) 
-------------------------------------------------------------------------------------------
+
+
+# automatization
 def is_solved(url, no_proxy):
     def retrieve_contents(url, no_proxy): #вложенная функция (nested function) функция, определённая внутри другой функции ;)
         log.info("Checking if solved.") #сделали код компактным проще говоря
