@@ -6,3 +6,4 @@ def function():
     print("g")
     
 function()
+function()
