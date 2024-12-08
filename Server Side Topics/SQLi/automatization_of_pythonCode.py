@@ -1,4 +1,6 @@
 import requests
+import logging
+import time
 
 def check_solution_direct(url):
     log.info("Checking if solved directly.")
