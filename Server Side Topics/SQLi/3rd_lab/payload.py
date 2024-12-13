@@ -6,6 +6,8 @@ import urllib3 #25 line ->
 import requests
 
 import utils
+from shop import Shop
+
 log = logging.getLogger(__name__) #Ч : Создаёт логгер с именем текущего модуля (файла).
 logging.basicConfig(
     stream=sys.stdout, #Логи выводятся в стандартный вывод (терминал).
