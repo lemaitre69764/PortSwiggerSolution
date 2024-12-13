@@ -22,7 +22,10 @@ def main(args):
     shop = Shop()
     filter_path = "filter?category=' UNION SELECT {nulls}-- "
     resp = requests.get(shop.base_url + filter_path)
-    if resp.status_code == 200:
+    if resp.status_code == 200:\
+"""
+continue here
+"""
         shop.is_solved()
 
 if __name__ == "__main__":
