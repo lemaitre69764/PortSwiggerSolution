@@ -1,0 +1,9 @@
+## Comments
+Oracle	--comment
+Microsoft	--comment
+/*comment*/
+PostgreSQL	--comment
+/*comment*/
+MySQL	#comment
+-- comment **[Note the space after the double dash]**
+/*comment*/
