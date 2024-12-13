@@ -1,6 +1,6 @@
 def replace_space(text):
-    return text.replace("_"," ")
+    return text.replace(" ","_")
 
-text = "SQL_injection_vulnerability_allowing_login_bypass_dir"
+text = "SQL injection vulnerability allowing login bypass"
 new_text = replace_space(text)
 print(new_text)
