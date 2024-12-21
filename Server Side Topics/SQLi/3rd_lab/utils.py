@@ -10,14 +10,6 @@ PROXIES = {
     "http": "127.0.0.1:8080",
     "https": "127.0.0.1:8080",
 }
-log = logging.getLogger(__name__) #Ч : Создаёт логгер с именем текущего модуля (файла).
-logging.basicConfig(
-    stream=sys.stdout, #Логи выводятся в стандартный вывод (терминал).
-    level=logging.INFO,
-    format="{asctime} [{threadName}] [{levelname}][{name}] {message}",
-    style="{",
-    datefmt="%H:%M:%S",
-)
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) #Removes warnings about insecure HTTPS connections
 
