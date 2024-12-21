@@ -1,7 +1,7 @@
 def replace_space(text):
     return text.replace(" ","%20")
 
-text = "Blind SQL injection with conditional responses"
+text = "INPUT"
 new_text = replace_space(text)
 print(new_text)
 "gg"
