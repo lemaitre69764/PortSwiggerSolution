@@ -5,3 +5,4 @@ text = "INPUT"
 new_text = replace_space(text)
 print(new_text)
 "gg"
+
