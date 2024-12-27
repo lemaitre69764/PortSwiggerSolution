@@ -56,7 +56,8 @@ def determine_response_length(inner_query, url, no_proxy=False):
             return i
         
         
-    
+#------------------------------------------------------------------------------------------
+#draft
 #xyz' and (select 'a' from users where username = 'administrator' and length(password > 1)) = 'a'-- 
         
 #xyz' or (select length('aaaa')=4)--       //true its return text "welcmoeback"
