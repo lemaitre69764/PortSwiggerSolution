@@ -24,3 +24,11 @@ if __name__ == "__main__":
     args = utils.parse_args(sys.argv)
     main(args)
     """
+    
+#short boolean
+"""
+def is_true(resp):
+    if "Welcome back!" in resp.text:
+        return True
+    return False
+"""
