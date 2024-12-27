@@ -8,6 +8,7 @@ import requests
 import utils
 from shop import Shop
 
+"""ne zabyt here"""
 log = logging.getLogger(__name__)
 logging.basicConfig(
     stream=sys.stdout,
