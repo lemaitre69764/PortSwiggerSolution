@@ -1,3 +1,6 @@
+"""
+code in process
+"""
 import sys
 import logging
 import urllib3
@@ -32,7 +35,7 @@ def format_char_query(inner_query, index, char):
 
 
 def is_true(resp):
-    if "Welcome back!" in resp.text:
+    if "Welcome back" in resp.text:
         return True
     return False
 
