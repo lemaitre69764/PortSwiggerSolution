@@ -69,6 +69,21 @@ def determine_response_char(task):
             task["result"] = str(chr(x))
             return task
 
+
+def format_results(response_chars):
+    results = [
+        res["result"]
+        for res in sorted(response_chars, key=lambda item: item["position"])
+    ]
+    return "".join(results)
+
+def get_response_string(inner_query, url, no_proxy, num_threads):
+    response_length = determine_response_length(inner_query, url, no_proxy)
+    if response_length is None:
+        log.error("Couldn't determine response length.")
+        sys.exit()
+    if num_threads > response_length:
+        numb_threads = response_length
     
         
         
