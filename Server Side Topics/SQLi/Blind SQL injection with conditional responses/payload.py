@@ -1,6 +1,6 @@
 """
 code in process
-
+https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses
 """
 import sys
 import logging
