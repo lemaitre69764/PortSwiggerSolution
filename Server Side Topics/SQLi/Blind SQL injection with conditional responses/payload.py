@@ -72,6 +72,15 @@ def determine_response_length(inner_query, url, no_proxy=False):
 
 
 def determind_response_char(inner_query, index):
+    """
+    chars = [ord(x) for x in AVAIL_CHARS]
+    Это генератор списка (list comprehension), который:
+
+    Проходит по каждому символу x из строки AVAIL_CHARS.
+    Преобразует этот символ в его ASCII-код с помощью ord(x).
+    Собирает все ASCII-коды в новый список.
+    """
+    chars = [ord(x) for x in AVAIL_CHARS]
     for 
 
 
