@@ -101,6 +101,7 @@ def get_response_string(inner_query, url, no_proxy):
 def main(args):
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, sess)
+    inner_query = "SELECT 'aaaa'"
     get_response_string(inner_query, shop.base_url, shop.no_proxy)
 
 if __name__ == "__main__":
