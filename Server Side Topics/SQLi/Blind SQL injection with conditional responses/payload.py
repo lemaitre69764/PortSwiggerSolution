@@ -101,9 +101,9 @@ def get_response_string(inner_query, url, no_proxy):
 def main(args):
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, sess)
-    inner_query = "SELECT 'aaaa'"
-    get_response_string(inner_query, shop.base_url, shop.no_proxy)
-
+    inner_query = "SELECT 'aa'"
+    response_string = get_response_string(inner_query, shop.base_url, shop.no_proxy)
+    log.info(f"Response is: {response_string}")
 if __name__ == "__main__":
     args = utils.parse_args(sys.argv)
     main(args)
