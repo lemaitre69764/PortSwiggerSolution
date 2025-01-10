@@ -68,7 +68,7 @@ def determine_response_length(inner_query, url, no_proxy=False):
             return i
 
 
-def determine_response_char(inner_query, index, url, no_proxy=False):
+def determine_response_char(task):
     """
     chars = [ord(x) for x in AVAIL_CHARS]
     Это генератор списка (list comprehension), который:
@@ -80,9 +80,9 @@ def determine_response_char(inner_query, index, url, no_proxy=False):
     sess = requests.Session()
     chars = [ord(x) for x in AVAIL_CHARS]
     for x in chars:
-        outer_query = format_char_query(inner_query, index, x)
-        prepped = format_request(url, outer_query)
-        if no_proxy:
+        outer_query = format_char_query(task["inner_query"], task["position"], x)
+        prepped = format_request(task["url"], outer_query)
+        if task["no_proxy"]:
             resp = sess.send(prepped)
         else:
             resp = sess.send(prepped, proxies=utils.PROXIES, verify=False)
