@@ -90,6 +90,12 @@ def determine_response_char(inner_query, index, url, no_proxy=False):
             return response_char
 
 
+def get_response_string():
+    response_lenght = determine_response_length()
+    for i in range(1, response_lenght + 1):
+        
+
+
 def main(args):
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, sess)
