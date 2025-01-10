@@ -95,3 +95,13 @@ inner_query = "SELECT 'aaaa'"
     print(determine_response_char(inner_query, 1, shop.base_url))
     #here
     # """
+    
+   
+     
+"""            
+#    response_lenght = determine_response_length(inner_query, url, no_proxy)
+#    for i in range(1, response_lenght + 1):
+#        response_chars.append(determine_response_char(inner_query, i, url, no_proxy))
+#    return "".join(response_chars)
+
+"""
