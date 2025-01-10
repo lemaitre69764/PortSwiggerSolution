@@ -79,3 +79,19 @@ if __name__ == "__main__":
     main(args)
     
 """
+
+
+
+
+
+
+"""
+inner_query = "SELECT 'aaaa'"
+    response_length = determine_response_length(
+        inner_query, shop.base_url, shop.no_proxy
+    )
+    get    
+    print(response_length)
+    print(determine_response_char(inner_query, 1, shop.base_url))
+    #here
+    # """

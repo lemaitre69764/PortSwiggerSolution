@@ -101,13 +101,7 @@ def get_response_string(inner_query, url, no_proxy):
 def main(args):
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, sess)
-    inner_query = "SELECT 'aaaa'"
-    response_length = determine_response_length(
-        inner_query, shop.base_url, shop.no_proxy)
-        
-    print(response_length)
-    print(determine_response_char(inner_query, 1, shop.base_url))
-    #here
+    get_response_string(inner_query, shop.base_url, shop.no_proxy)
 
 if __name__ == "__main__":
     args = utils.parse_args(sys.argv)
