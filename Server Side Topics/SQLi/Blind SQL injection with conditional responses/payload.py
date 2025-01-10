@@ -90,10 +90,12 @@ def determine_response_char(inner_query, index, url, no_proxy=False):
             return response_char
 
 
-def get_response_string():
-    response_lenght = determine_response_length()
+def get_response_string(inner_query, url, no_proxy):
+    response_chars = []
+    response_lenght = determine_response_length(inner_query, url, no_proxy)
     for i in range(1, response_lenght + 1):
-        
+        response_chars.append(determine_response_char(inner_query, i, url, no_proxy))
+    return "".join(response_chars)
 
 
 def main(args):
