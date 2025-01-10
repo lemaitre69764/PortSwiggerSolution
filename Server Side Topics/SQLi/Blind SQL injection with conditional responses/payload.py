@@ -117,14 +117,23 @@ def get_response_string(inner_query, url, no_proxy, num_threads):
     return format_results(response_chars)       
 
 def main(args):
+    num_threads = 1
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, sess)
-    inner_query = "SELECT 'aa'"
-    response_string = get_response_string(inner_query, shop.base_url, shop.no_proxy)
+    inner_query = "SELECT 'abcd'"
+    response_string = get_response_string(
+        inner_query, shop.base_url, shop.no_proxy, num_threads
+        )
     log.info(f"Response is: {response_string}")
+    
+    
 if __name__ == "__main__":
     args = utils.parse_args(sys.argv)
     main(args)
+    
+    
+    
+    
 #------------------------------------------------------------------------------------------
 #draft
 
