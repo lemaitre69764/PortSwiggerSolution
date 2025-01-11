@@ -1,6 +1,6 @@
 import sys
 import logging
-
+import re
 
 import utils
 
@@ -22,7 +22,7 @@ class Shop:
         if not resp.status_code == 200:
             log.error("Could not get login page. Exiting script.")
             sys.exit()
-        
+        pattern = re.compile(r'name="csrf" value="(.*?)"')
 
 def is_solved(url, no_proxy):
     def _is_solved(url, no_proxy): # underline like a private to class 
