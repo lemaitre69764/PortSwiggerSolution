@@ -2,7 +2,7 @@ import sys
 import time
 import logging
 import argparse
-import urllib3 #25 line ->
+import urllib3 
 
 import requests
 
@@ -11,8 +11,7 @@ PROXIES = {
     "https": "127.0.0.1:8080",
 }
 
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) #Removes warnings about insecure HTTPS connections
-
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
 
 def parse_args(args: list):
     parser = argparse.ArgumentParser()
@@ -21,11 +20,6 @@ def parse_args(args: list):
     )
     parser.add_argument("url", help="url of lab")
     return parser.parse_args() 
-    """
-    Почему важен return?
-    Без return функция ничего не вернёт, и вы не сможете получить доступ
-    к обработанным аргументам.
-    """
 
 def normalize_url(url):
     if not url.endswith("/"):
