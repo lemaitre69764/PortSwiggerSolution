@@ -1,4 +1,10 @@
+import sys
+import logging
+
+
 import utils
+
+
 
 class Shop():
     def __init__(self, url, no_proxy, session):
