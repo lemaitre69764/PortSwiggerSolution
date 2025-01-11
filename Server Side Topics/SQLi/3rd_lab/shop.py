@@ -1,6 +1,7 @@
 import sys
 import logging
 import re
+import time
 
 import requests
 
@@ -62,5 +63,5 @@ def is_solved(self):
         return True
     else:
         time.sleep(2)
-        _is_solved(url, no_proxy)
+        _is_solved(self)
                 
