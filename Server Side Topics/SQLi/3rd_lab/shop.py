@@ -46,18 +46,18 @@ class Shop:
             
         
 
-def is_solved(url, no_proxy):
-    def _is_solved(url, no_proxy): # underline like a private to class 
+def is_solved(self):
+    def _is_solved(self): # underline like a private to class 
         log.info("Checking if solved.")
-        if no_proxy:
-            resp = requests.get(url)
+        if self.no_proxy:
+            resp = requests.get(self.base_url)
         else:
-            resp = requests.get(url, proxies=utils.PROXIES, verify=False)
+            resp = requests.get(self.base_url, proxies=utils.PROXIES, verify=False)
         if "Congratulations, you solved the lab!" in resp.text:
             log.info("Lab is solved!")
             return True
         
-    solved = _is_solved(url, no_proxy)
+    solved = _is_solved(self)
     if solved:
         return True
     else:
