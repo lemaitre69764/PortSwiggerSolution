@@ -1,5 +1,6 @@
 import utils
 
+
 class Shop():
     def __init__(self, url, sess, no_proxy):
         self.base_url = utils.normalize_url(url)
