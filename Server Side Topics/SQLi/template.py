@@ -1,34 +1,27 @@
-"""
 import sys
 import logging
 import argparse
-import urllib3 #25 line ->
+import urllib3
 
 import requests
 
 import utils
-log = logging.getLogger(__name__) #Ч : Создаёт логгер с именем текущего модуля (файла).
+
+
+log = logging.getLogger(__name__)
 logging.basicConfig(
-    stream=sys.stdout, #Логи выводятся в стандартный вывод (терминал).
+    stream=sys.stdout,
     level=logging.INFO,
-    format="{asctime} [{threadName}] [{levelname}][{name}] {message}",
-    style="{",
+    format="{asctime} [{threadName}] [{levelname}] [{name}] {message}",
+    style="{"
     datefmt="%H:%M:%S",
 )
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) #Removes warnings about insecure HTTPS connections
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def main(args):
     pass
-
-if __name__ == "__main__":
-    args = utils.parse_args(sys.argv)
-    main(args)
-    """
     
-#short boolean
-"""
-def is_true(resp):
-    if "Welcome back!" in resp.text:
-        return True
-    return False
-"""
+if __name__ == "__main__":
+    args=utils.parse_args(sys.argv)
+    main(args)
+    
