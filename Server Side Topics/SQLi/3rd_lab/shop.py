@@ -2,6 +2,8 @@ import sys
 import logging
 import re
 
+import requests
+
 import utils
 
 log = logging.getLogger(__name__)
@@ -50,7 +52,7 @@ def is_solved(url, no_proxy):
         if no_proxy:
             resp = requests.get(url)
         else:
-            resp = requests.get(url, proxies=PROXIES, verify=False)
+            resp = requests.get(url, proxies=utils.PROXIES, verify=False)
         if "Congratulations, you solved the lab!" in resp.text:
             log.info("Lab is solved!")
             return True
