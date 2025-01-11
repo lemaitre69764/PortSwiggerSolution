@@ -1,7 +1,7 @@
 import sys
 import logging
 import argparse
-import urllib3 #25 line ->
+import urllib3
 
 import requests
 
