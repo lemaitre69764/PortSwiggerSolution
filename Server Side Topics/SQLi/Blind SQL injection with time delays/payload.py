@@ -24,7 +24,7 @@ logging.basicConfig(
 def parse_args(args: list):
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-n", "--no-proxy", defaulte = False, action="store_true", help="do not use proxy"
+        "-n", "--no-proxy", default=False, action="store_true", help="do not use proxy"
     )
     parser.add_argument("url", help="url of lab")
     return parser.parse_args()
