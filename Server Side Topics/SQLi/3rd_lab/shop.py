@@ -4,7 +4,7 @@ import logging
 
 import utils
 
-
+log = logging.getLogger(__name__)
 
 class Shop():
     def __init__(self, url, no_proxy, session):
