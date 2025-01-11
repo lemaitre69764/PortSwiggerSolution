@@ -23,6 +23,26 @@ class Shop:
             log.error("Could not get login page. Exiting script.")
             sys.exit()
         pattern = re.compile(r'name="csrf" value="(.*?)"')
+        m = pattern.search(resp.text)
+        csrf_token = m[1]
+        log.info(f"Found CSRF token: {csrf_token}")
+        data = {
+            "csrf": csrf_token,
+            "username": username,
+            "password": password,
+        }
+        log.info("attempting to login")
+        if self.no_proxy:
+            resp = self.session.post(self.login_url, data=data)
+        else:
+            resp = self.session.post(
+                self.login_url, data=data, proxies=utils.PROXIES, verify=False
+            )
+        if resp.status_code == 200:
+            log.info("Successfully logged in.")
+            
+            
+        
 
 def is_solved(url, no_proxy):
     def _is_solved(url, no_proxy): # underline like a private to class 
