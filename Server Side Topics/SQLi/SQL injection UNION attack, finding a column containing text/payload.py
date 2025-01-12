@@ -22,7 +22,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def main(args):
     shop = Shop(args.url, args.no_proxy)
-    hint = get_hint(shop.base_url, shop.no_proxy)
+    hint = shop.get_hint()
     print(hint)
     nulls_list = ["NULL"]
     num_columns = None
