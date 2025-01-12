@@ -37,7 +37,7 @@ def main(args):
             break
         nulls_list.append("NULL")
     if num_columns:        
-        log.info(f"Number of columns is : {len(nulls_list)}")
+        log.info(f"Number of columns is : {num_columns}")
         shop.is_solved()
     else:
         log.info("Could not determine number of columns.")
