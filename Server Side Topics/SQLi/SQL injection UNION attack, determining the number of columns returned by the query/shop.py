@@ -10,7 +10,7 @@ import utils
 log = logging.getLogger(__name__)
 
 class Shop:
-    def __init__(self, url, no_proxy, session):
+    def __init__(self, url, no_proxy, session=None):
         self.base_url = utils.normalize_url(url)
         self.login_url = self.base_url + "login"
         self.no_proxy = no_proxy
