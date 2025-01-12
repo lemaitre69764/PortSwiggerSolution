@@ -65,3 +65,11 @@ class Shop:
             time.sleep(2)
             _is_solved(self)
                 
+    def get_category(self, category):
+        category_filter_url = self.base_url + f"filter?category={category}"
+        if self.no_proxy:
+            resp = requests.get(category_filter_url)
+        else:
+            resp = requests.get(category_filter_url, proxies=utils.PROXIES, verify=False
+            )
+        return resp
