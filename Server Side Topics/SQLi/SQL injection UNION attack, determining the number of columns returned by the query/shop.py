@@ -65,3 +65,5 @@ class Shop:
             time.sleep(2)
             _is_solved(self)
                 
+    def get_category(self, category):
+        category_filter = self.base_url + "filter?category="

