@@ -16,6 +16,22 @@ class Shop:
         self.no_proxy = no_proxy
         self.session = session
         
+        
+        
+    def get_hint(self):
+        log.info("Getting hint")
+        if self.no_proxy:
+            resp = requests.get(self.base_url)
+        else:
+            resp = requests.get(self.base_url, proxies=utils.PROXIES, verify=False)
+        resp = requests.get(url)
+        pattern = re.compile(r'id="hint">.*?: \'(.*?)\'')
+        m = pattern.search(resp.text)
+        log.info(f"Found hint: {m[1]}")
+        return m[1]
+
+        
+        
     def login(self, username, password):
         log.info("Geting login page.")
         if self.no_proxy:

