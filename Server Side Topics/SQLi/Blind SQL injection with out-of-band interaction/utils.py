@@ -1,9 +1,12 @@
 import argparse
 import argparse
 import logging
+import string
+import urllib3
 
 import requests
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 PROXIES = {
     "http": "127.0.0.1:8080",
     "https": "127.0.0.1:8080",
