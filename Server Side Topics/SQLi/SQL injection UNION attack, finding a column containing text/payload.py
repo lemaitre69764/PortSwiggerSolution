@@ -2,7 +2,7 @@ import sys
 import logging
 import argparse
 import urllib3
-
+import re
 import requests
 
 import utils
@@ -20,8 +20,16 @@ logging.basicConfig(
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
+def get_hint(url, no_proxy):
+    resp = requests.get(url)
+    pattern = re.compile(r'id="hint">.*?: \'(.*?)\'')
+    m = pattern.search(resp.text)
+    return m[1]
+
 def main(args):
     shop = Shop(args.url, args.no_proxy)
+    hint = get_hint(shop.base_url, shop.no_proxy)
+    print(hint)
     #nulls_list = ["NULL"]
     #num_columns = None
     #log.info("Determining number of culmn")
