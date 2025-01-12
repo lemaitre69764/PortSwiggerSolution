@@ -24,7 +24,6 @@ class Shop:
             resp = requests.get(self.base_url)
         else:
             resp = requests.get(self.base_url, proxies=utils.PROXIES, verify=False)
-        resp = requests.get(url)
         pattern = re.compile(r'id="hint">.*?: \'(.*?)\'')
         m = pattern.search(resp.text)
         log.info(f"Found hint: {m[1]}")
