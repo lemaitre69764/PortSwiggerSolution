@@ -1,9 +1,6 @@
 import sys
 import logging
-import argparse
 import urllib3
-import re
-import requests
 
 import utils
 from shop import Shop
