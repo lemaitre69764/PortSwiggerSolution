@@ -134,7 +134,8 @@ def main(args):
         inner_query, shop.base_url, shop.no_proxy, num_threads
         )
     log.info(f"Response is: {respone_string}")
-    
+    shop.login("administrator", respone_string)
+    shop.is_solved()
 if __name__ == "__main__":
     args = utils.parse_args(sys.argv)
     main(args)
