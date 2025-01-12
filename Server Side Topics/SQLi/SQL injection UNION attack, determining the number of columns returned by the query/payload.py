@@ -24,6 +24,7 @@ def main(args):
     shop = Shop(args.url, args.no_proxy)
     nulls_list = ["NULL"]
     num_columns = None
+    log.info("Determining number of columns.")
     while len(nulls_list) < 50:
         nulls = ",".join(nulls_list)
         filter_path = f"filter?category=' UNION SELECT {nulls}-- "
