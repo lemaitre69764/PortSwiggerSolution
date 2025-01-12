@@ -44,7 +44,8 @@ def main(args):
         resp = shop.get_category(category)
         if resp.status_code == 200:
             text_columns.append(i)
-        
+    ", ".join(map(str, text_columns))            
+    log.info("The text columns are: ")
         
     
 if __name__ == "__main__":
