@@ -1,11 +1,17 @@
-import sys
 import argparse
+import argparse
+import logging
 
+import requests
 
 PROXIES = {
     "http": "127.0.0.1:8080",
     "https": "127.0.0.1:8080",
 }
+
+log = logging.getLogger(__name__)
+
+
 
 
 def parse_args(args: list):
