@@ -70,5 +70,6 @@ class Shop:
         if self.no_proxy:
             resp = requests.get(category_filter_url)
         else:
-            resp = requests.get(category, proxies=utils.PROXIES, verify=False)
-        
+            resp = requests.get(category_filter_url, proxies=utils.PROXIES, verify=False
+            )
+        return resp
