@@ -15,7 +15,7 @@ class Shop:
         self.login_url = self.base_url + "login"
         self.no_proxy = no_proxy
         self.session = session
-        
+        self.category_url = self.base_url + f"filter?category="
         
         
     def get_hint(self):
@@ -58,8 +58,10 @@ class Shop:
             )
         if resp.status_code == 200:
             log.info("Successfully logged in.")
+            
+            
         
-        
+
     def is_solved(self):
         def _is_solved(self):
             log.info("Checking if solved....")
@@ -79,7 +81,7 @@ class Shop:
             _is_solved(self)
                 
     def get_category(self, category):
-        category_filter_url = self.base_url + f"filter?category={category}"
+        category_filter_url = self.category_url + "category"
         if self.no_proxy:
             resp = requests.get(category_filter_url)
         else:
