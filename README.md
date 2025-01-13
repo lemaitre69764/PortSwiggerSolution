@@ -12,7 +12,9 @@
 |  SQL injection UNION attack, retrieving data from other tables                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20UNION%20attack,%20retrieving%20data%20from%20other%20tables/payload.py)          |
 |  Blind SQL injection with conditional responses                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20conditional%20responses/payload.py)          |
 |  Blind SQL injection with time delays                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20time%20delays/payload.py)          |
+|  Blind SQL injection with out-of-band interaction                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20out-of-band%20interaction/payload.py)          |
 
+Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20out-of-band%20interaction/payload.py
 ---
 
 ##  Cross-Site Request Forgery (CSRF)
