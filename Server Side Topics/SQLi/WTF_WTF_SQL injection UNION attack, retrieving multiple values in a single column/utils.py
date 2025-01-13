@@ -3,7 +3,6 @@ import argparse
 import re
 import logging
 import urllib3
-
 import requests
 
 
@@ -12,6 +11,15 @@ PROXIES = {
     "https": "127.0.0.1:8080",
 }
 
+
+log = logging.getLogger(__name__)
+logging.basicConfig(
+    stream=sys.stdout,
+    level=logging.INFO,
+    format="{asctime} [{threadName}] [{levelname}] [{name}] {message}",
+    style="{", 
+    datefmt="%H:%M:%S",
+)
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -39,7 +47,7 @@ def determine_number_of_columns(url, no_proxy):
         if no_proxy: 
             resp = requests.get(exploit_url)
         else: 
-            resp = requests.get(exploit_url, proxies=utils.PROXIES, verify=False)
+            resp = requests.get(exploit_url, proxies=PROXIES, verify=False)
         if resp.status_code == 200:
             num_columns = len(nulls_list)
             break
@@ -60,7 +68,7 @@ def determine_text_columns(url, no_proxy, num_columns):
         if no_proxy: 
             resp = requests.get(exploit_url)
         else: 
-            resp = requests.get(exploit_url, proxies=utils.PROXIES, verify=False)
+            resp = requests.get(exploit_url, proxies=PROXIES, verify=False)
         if resp.status_code == 200:
             text_columns.append(i)
     if text_columns:
