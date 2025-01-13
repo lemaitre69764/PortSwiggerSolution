@@ -58,10 +58,8 @@ class Shop:
             )
         if resp.status_code == 200:
             log.info("Successfully logged in.")
-            
-            
         
-
+        
     def is_solved(self):
         def _is_solved(self):
             log.info("Checking if solved....")
