@@ -81,7 +81,7 @@ class Shop:
             _is_solved(self)
                 
     def get_category(self, category):
-        category_filter_url = self.category_url + "category"
+        category_filter_url = self.category_url + category
         if self.no_proxy:
             resp = requests.get(category_filter_url)
         else:

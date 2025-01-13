@@ -20,16 +20,17 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 def main(args):
-    session = requests.Session()
-    shop = Shop(args.url, args.no_proxy, session)
-    num_columns = utils.determine_number_of_columns(shop.category_url, shop.no_proxy)
+    shop = Shop(args.url, args.no_proxy)
+    num_columns = utils.determine_number_of_columns(
+        shop.category_url, shop.no_proxy, oracle=True
+        )
     if not num_columns:
         log.error("Couldn't determine number of columns. Exiting")
         sys.exit(-1)
     text_columns = utils.determine_text_columns(
-        shop.category_url, shop.no_proxy, num_columns
+        shop.category_url, shop.no_proxy, num_columns, oracle=True
     )
-    
+    print(num_columns, text_columns)
     
     
     
