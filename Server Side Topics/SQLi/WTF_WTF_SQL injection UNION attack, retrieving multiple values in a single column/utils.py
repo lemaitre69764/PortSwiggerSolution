@@ -1,14 +1,19 @@
 import sys
 import argparse
 import re
-import requests
 import logging
+import urllib3
+
+import requests
+
 
 PROXIES = {
     "http": "127.0.0.1:8080",
     "https": "127.0.0.1:8080",
 }
 
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def parse_args(args: list):
     parser = argparse.ArgumentParser()
