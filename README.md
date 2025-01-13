@@ -34,3 +34,6 @@
 |  DOM-Based XSS                   | [Click](./Client%20Side%20Topics/DOM%20based%20xss)           |
 
 ---
+
+## comment
+The files were created using the Python interpreter version 3.11.9.
