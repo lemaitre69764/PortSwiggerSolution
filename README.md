@@ -9,6 +9,7 @@
 |  SQL injection UNION attack, determining the number of columns returned by the query                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20UNION%20attack,%20determining%20the%20number%20of%20columns%20returned%20by%20the%20query/payload.py)          |
 |  SQL injection UNION attack, finding a column containing text                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20UNION%20attack,%20finding%20a%20column%20containing%20text/payload.py)          |
 |  SQL injection vulnerability allowing login bypass                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20vulnerability%20allowing%20login%20bypass/payload.py)          |
+|  SQL injection UNION attack, retrieving data from other tables                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20UNION%20attack,%20retrieving%20data%20from%20other%20tables/payload.py)          |
 |  Blind SQL injection with conditional responses                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20conditional%20responses/payload.py)          |
 |  Blind SQL injection with time delays                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20time%20delays/payload.py)          |
 
