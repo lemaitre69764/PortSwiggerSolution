@@ -10,7 +10,7 @@
 |  SQL injection UNION attack, finding a column containing text                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20UNION%20attack,%20finding%20a%20column%20containing%20text/payload.py)          |
 |  SQL injection vulnerability allowing login bypass                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20vulnerability%20allowing%20login%20bypass/payload.py)          |
 |  SQL injection UNION attack, retrieving data from other tables                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20UNION%20attack,%20retrieving%20data%20from%20other%20tables/payload.py)          |
-|  SQL injection UNION attack, retrieving multiple values in a single column                   | [Click](./SQL%20injection%20UNION%20attack,%20retrieving%20multiple%20values%20in%20a%20single%20column/payload.py)          |
+|  SQL injection UNION attack, retrieving multiple values in a single column                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20UNION%20attack,%20retrieving%20multiple%20values%20in%20a%20single%20column/payload.py)          |
 |  Blind SQL injection with conditional responses                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20conditional%20responses/payload.py)          |
 |  Blind SQL injection with time delays                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20time%20delays/payload.py)          |
 |  Blind SQL injection with out-of-band interaction                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20out-of-band%20interaction/payload.py)          |
