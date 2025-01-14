@@ -40,7 +40,7 @@ def determine_number_of_columns(url, no_proxy, oracle=False):
     log.info("Determining number of columns")
     nulls_list=["NULL"]
     num_columns = None
-    while len(nulls_list) < 10:
+    while len(nulls_list) < 20:
         nulls = ",".join(nulls_list)
         if oracle:
             category = f"' UNION SELECT {nulls} FROM dual-- "
