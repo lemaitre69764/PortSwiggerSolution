@@ -2,6 +2,8 @@ import sys
 import logging
 import urllib3
 
+import requests
+
 
 import utils
 from shop import Shop
