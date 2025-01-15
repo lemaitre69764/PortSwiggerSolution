@@ -57,8 +57,6 @@ def main(args):
     read the initial code
     !!!
     """
-    #for debug
-    #log.info("DDODO")
     pattern = re.compile(r"<th>(USERS_.*?)</th>")
     m = pattern.search(resp.text)
     users_table = m[1]
