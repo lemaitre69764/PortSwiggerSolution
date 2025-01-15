@@ -19,7 +19,9 @@ logging.basicConfig(
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def main(args):
-    pass
+    sess = requests.Session()
+    shop = Shop(args.url, args.no_proxy, sess)
+    num_columns = utils.determine_number_of_columns(shop.category_url, shop.no_proxy)
     
 if __name__ == "__main__":
     args=utils.parse_args(sys.argv)
