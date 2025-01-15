@@ -14,6 +14,7 @@
 |  SQL injection attack, querying the database type and version on Oracle                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20attack,%20querying%20the%20database%20type%20and%20version%20on%20Oracle/payload.py)          |
 |  SQL injection attack, querying the database type and version on MySQL and Microsoft                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20attack,%20querying%20the%20database%20type%20and%20version%20on%20MySQL%20and%20Microsoft/payload.py)          |
 |  SQL injection attack, listing the database contents on non-Oracle databases                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20attack,%20listing%20the%20database%20contents%20on%20non-Oracle%20databases/payload.py)          |
+|  SQL injection attack, listing the database contents on Oracle                   | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20attack,%20listing%20the%20database%20contents%20on%20Oracle/payload.py)          |
 |  Blind SQL injection with conditional responses                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20conditional%20responses/payload.py)          |
 |  Blind SQL injection with time delays                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20time%20delays/payload.py)          |
 |  Blind SQL injection with out-of-band interaction                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20out-of-band%20interaction/payload.py)          |
