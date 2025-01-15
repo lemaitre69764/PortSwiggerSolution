@@ -40,6 +40,7 @@ def main(args):
     m = pattern.search(resp.text)
     users_table = m[1]
     log.info(f"Found users table: {users_table}")
+    #column name
     log.info("Getting columns from table.")
     nulls = ["NULL"] * num_columns
     nulls[text_columns[0]] = "column_name"
