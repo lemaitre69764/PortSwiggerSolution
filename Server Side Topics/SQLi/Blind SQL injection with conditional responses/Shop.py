@@ -15,7 +15,7 @@ class Shop:
         self.login_url = self.base_url + "login"
         self.no_proxy = no_proxy
         self.session = session
-        
+        self.category_url = self.base_url + f"filter?category="
         
         
     def get_hint(self):
@@ -81,7 +81,8 @@ class Shop:
             _is_solved(self)
                 
     def get_category(self, category):
-        category_filter_url = self.base_url + f"filter?category={category}"
+        log.info(f"Getting category: {category}")
+        category_filter_url = self.category_url + category
         if self.no_proxy:
             resp = requests.get(category_filter_url)
         else:
