@@ -1,6 +1,3 @@
-"""
-This is not script for automatization solve lab, but he give you password
-"""
 import sys
 import logging
 import urllib3
@@ -11,7 +8,13 @@ import utils
 from shop import Shop
 from sqli import SQLi
 log = logging.getLogger(__name__)
-
+logging.basicConfig(
+    stream=sys.stdout,
+    level=logging.INFO,
+    format="{asctime} [{threadName}][{levelname}] [{name}] {message}",
+    style = "{",
+    datefmt="%H:%M:%S",
+)
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
