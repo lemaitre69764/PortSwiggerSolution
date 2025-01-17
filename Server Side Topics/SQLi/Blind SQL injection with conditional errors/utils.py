@@ -4,13 +4,14 @@ import re
 import logging
 import urllib3
 import requests
-
+import string
 
 PROXIES = {
     "http": "127.0.0.1:8080",
     "https": "127.0.0.1:8080",
 }
 
+AVAIL_CHARS = string.printable
 
 log = logging.getLogger(__name__)
 logging.basicConfig(
