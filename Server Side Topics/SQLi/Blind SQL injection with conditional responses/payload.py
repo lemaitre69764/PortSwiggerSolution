@@ -1,6 +1,3 @@
-"""
-This is not script for automatization solve lab, but he give you password
-"""
 import sys
 import logging
 import urllib3
@@ -22,12 +19,6 @@ logging.basicConfig(
 )
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-"""
-IPython (англ. Interactive Python)
-через него запустили скрипт
-import string
-string.printable
-"""
 AVAIL_CHARS = string.printable 
 MAX_LENGTH = 100
 def format_length_query(inner_query, length):
