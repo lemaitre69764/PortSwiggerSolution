@@ -4,8 +4,6 @@ This is not script for automatization solve lab, but he give you password
 import sys
 import logging
 import urllib3
-import string
-import concurrent.futures
 
 import requests
 
@@ -13,19 +11,14 @@ import utils
 from shop import Shop
 from sqli import SQLi
 log = logging.getLogger(__name__)
-logging.basicConfig(
-    stream=sys.stdout,
-    level=logging.INFO,
-    format="{asctime} [{threadName}][{levelname}] [{name}] {message}",
-    style = "{",
-    datefmt="%H:%M:%S",
-)
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 class MySQLi(SQLi):
     def __init__(self, tracking_id, session_token):
-        super().max_length = 100
+        super().__init__()
+        self.max_length = 100
         self.tracking_id = tracking_id
         self.session_token = session_token
     def format_length_query(self, inner_query, length):
