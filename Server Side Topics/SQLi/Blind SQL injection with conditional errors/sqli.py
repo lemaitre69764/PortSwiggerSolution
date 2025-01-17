@@ -9,15 +9,8 @@ import requests
 import utils
 from shop import Shop
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 log = logging.getLogger(__name__)
-logging.basicConfig(
-    stream=sys.stdout,
-    level=logging.INFO,
-    format="{asctime} [{threadName}][{levelname}] [{name}] {message}",
-    style = "{",
-    datefmt="%H:%M:%S",
-)
-
 
 class SQLi:
     def __init__(self):
