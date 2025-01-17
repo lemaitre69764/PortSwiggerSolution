@@ -18,6 +18,7 @@
 |  Blind SQL injection with conditional responses                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20conditional%20responses/payload.py)          |
 |  Blind SQL injection with time delays                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20time%20delays/payload.py)          |
 |  Blind SQL injection with out-of-band interaction                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20out-of-band%20interaction/payload.py)          |
+|  Blind SQL injection with conditional errors                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20conditional%20errors/payload.py)          |
 
 
 SQL injection attack, listing the database contents on non-Oracle databases
