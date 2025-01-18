@@ -41,6 +41,8 @@ class MySQLi(SQLi):
         if resp.status_code == 200:
             return False
         return True
+    
+    
     def format_request(self, url, outer_query):
         cookies = {
             "TrackingId": outer_query,
