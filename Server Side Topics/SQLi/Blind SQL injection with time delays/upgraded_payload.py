@@ -6,7 +6,6 @@ import urllib3
 import requests
 import os
 
-# Настройка прокси через переменные окружения
 PROXIES = {
     "http": os.getenv("HTTP_PROXY", "127.0.0.1:8080"),
     "https": os.getenv("HTTPS_PROXY", "127.0.0.1:8080"),
@@ -34,12 +33,10 @@ def parse_args(args: list):
 
 
 def normalize_url(url: str) -> str:
-    """Ensure the URL ends with a slash."""
     return url if url.endswith("/") else url + "/"
 
 
 def retrieve_contents(url: str, no_proxy: bool) -> bool:
-    """Check if the lab is solved by retrieving the page content."""
     log.info("Checking if the lab is solved...")
     try:
         with requests.get(url, proxies=None if no_proxy else PROXIES, verify=False) as resp:
@@ -52,7 +49,6 @@ def retrieve_contents(url: str, no_proxy: bool) -> bool:
 
 
 def is_solved(url: str, no_proxy: bool) -> bool:
-    """Check if the lab is solved with a retry mechanism."""
     if retrieve_contents(url, no_proxy):
         return True
     time.sleep(2)
