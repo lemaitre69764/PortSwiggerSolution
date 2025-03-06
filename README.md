@@ -20,7 +20,8 @@
 |  Blind SQL injection with out-of-band interaction                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20out-of-band%20interaction/payload.py)          |
 |  Blind SQL injection with out-of-band data exfiltration                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20out-of-band%20data%20exfiltration/payload.py)          |
 |  Blind SQL injection with conditional errors                   | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20conditional%20errors/payload.py)          |
-|   SQL injection with filter bypass via XML encoding                | [Click](./Server%20Side%20Topics/SQLi/SQL%20injection%20with%20filter%20bypass%20via%20XML%20encoding/payload.py)          |
+|  SQL injection with filter bypass via XML encoding
+                 | [Click](./Server%20Side%20Topics/SQLi/Blind%20SQL%20injection%20with%20conditional%20errors/payload.py)          |
 
 
 
