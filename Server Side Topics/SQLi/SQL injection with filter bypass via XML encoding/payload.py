@@ -86,7 +86,8 @@ def main(args):
         resp = requests.post(url, data=payload, proxies=utils.PROXIES, verify=False)
     password = resp.text
     print(f"The password is: {password}")
-    
+    shop.login("administrator", password)
+    shop.is_solved()
     
 if __name__ == "__main__":
     args=utils.parse_args(sys.argv)
