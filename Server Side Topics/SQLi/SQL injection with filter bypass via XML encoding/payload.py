@@ -45,7 +45,7 @@ def format_payload(query):
     formatted_query = format_query(query)
     return (
         '<?xml version="1.0" encoding="UTF-8"?><stockCheck><productId>1</productId>'
-        f"<storeId>1&#x20;{formatted_query}&#x2d;&#x2d;</storeId></stockCheck>"
+        f"<storeId>1&#x20;{formatted_query}&#x2D;&#x2D;</storeId></stockCheck>"
 )
 
 
