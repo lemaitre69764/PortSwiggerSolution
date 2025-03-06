@@ -1,7 +1,7 @@
 import sys
 import logging
 import urllib3
-
+import re
 import requests
 
 import utils
@@ -69,9 +69,9 @@ def main(args):
         resp = requests.post(url, data=payload)
     else:
         resp = requests.post(url, data=payload, proxies=utils.PROXIES, verify=False)
-    pattern = re.compile(r'"users")
+    pattern = re.compile(r"(users)")
     m = pattern.search(resp.text)
-    table_name = m[0]
+    table_name = m[1]
     print(table_name)
     #print(resp.text)
     
