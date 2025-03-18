@@ -15,3 +15,12 @@ Content-Length: 0
         currentQueue = 'queue' + str(usernamePrefix)
         # prepare 1 registration request
         engine.queue(target.req, str(usernamePrefix), gate=currentQueue)
+
+        CONFIRM_REQUEST_NUMBER = 50
+        for confirmRequest in range(CONFIRM_REQUEST_NUMBER):
+            engine.queue(confirmTokenRequest, gate=currentQueue)
+        
+        engine.openGate(currentQueue)
+
+def handleResponse(req, interesting):
+    table.add(req)
