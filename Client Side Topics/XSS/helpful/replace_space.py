@@ -1,5 +1,5 @@
 def replace_space(text):
-    return text.replace(" ","%20")
+    return text.replace(" "," \\")
 
 text = ""
 new_text = replace_space(text)
